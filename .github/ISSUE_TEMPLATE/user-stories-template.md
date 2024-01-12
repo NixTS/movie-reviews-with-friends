@@ -13,16 +13,8 @@ assignees: NixTS
 ### Acceptance criteria
 
 - ""
-- ""
-- ""
-- ""
-- a""
 
 
 ### Tasks
 
-- [ ] .
-- [ ] .
-- [ ] .
-- [ ] .
 - [ ] .

@@ -32,7 +32,7 @@ def list_of_movies(request):
                     genre_ids = movie.get('genre_ids', [])
                     movie_genre = fetch_genre_names(genre_ids)
                     movie_release_date = datetime.strptime(movie.get('release_date', ''), '%Y-%m-%d').date()
-                    movie_runtime = timedelta(minutes=movie.get('runtime', 0))
+                    movie_length = timedelta(minutes=movie.get('runtime', 0))
 
                     movie_details, created = MovieDetails.objects.get_or_create(
                         movie_id=movie_id,
@@ -42,7 +42,7 @@ def list_of_movies(request):
                             'movie_description': movie_description,
                             'movie_genre': movie_genre,
                             'movie_release_date': movie_release_date,
-                            'movie_runtime': movie_runtime,
+                            'movie_length': movie_length,
                         }
                     )
 
@@ -52,7 +52,7 @@ def list_of_movies(request):
                         movie_details.movie_description = movie_description
                         movie_details.movie_genre = movie_genre
                         movie_details.movie_release_date = movie_release_date
-                        movie_details.movie_runtime = movie_runtime
+                        movie_details.movie_length = movie_length
                         movie_details.save()
 
                     movies.append(movie_details)

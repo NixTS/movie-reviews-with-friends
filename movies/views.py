@@ -2,6 +2,7 @@ import requests
 from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.urls import reverse
 from datetime import datetime, timedelta
 from moviestar.settings import TMDB_API_KEY
 from .models import MovieDetails
@@ -68,7 +69,7 @@ def list_of_movies(request):
 
 def movie_detail(request, movie_id):
     movie = get_object_or_404(MovieDetails, movie_id=movie_id)
-    return render(request, 'movies/movie_details.html', {'movie': movie})
+    return render(request, 'movies/movie_details.html', {'movie': movie, 'back_url': reverse('movies')})
 
 
 def fetch_genre_names(genre_ids):

@@ -1,5 +1,5 @@
 import requests
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from moviestar.settings import TMDB_API_KEY
 from .models import MovieDetails
@@ -40,3 +40,9 @@ def list_of_movies(request):
     else:
         print(f"Error fetching data from TMDB API. Status code: {response.status_code}")
         return HttpResponse(f"Error fetching data from TMDB API. Status code: {response.status_code}", status=response.status_code)
+
+
+
+def movie_detail(request, movie_id):
+    movie = get_object_or_404(MovieDetails, movie_id=movie_id)
+    return render(request, 'movies/movie_details.html', {'movie': movie})

@@ -12,7 +12,7 @@
     <ul>
         {% for movie in movies %}
         <p>{{ movie.movie_id }}</p>
-        <a href="{% url 'movie_detail' movie.movie_id %}">
+        <a href="{% url 'movie_details' movie.movie_id %}">
             <p>{{ movie.movie_title }}</p>
             <p>{% if movie.movie_poster %}
                 <img src="{{ movie.get_poster_url }}" alt="Movie Poster">

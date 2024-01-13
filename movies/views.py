@@ -1,4 +1,5 @@
 import requests
+from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from datetime import datetime, timedelta
@@ -10,49 +11,59 @@ from .models import MovieDetails
 BASE_URL = 'https://api.themoviedb.org/3/'
 
 def list_of_movies(request):
-    url = f'{BASE_URL}movie/popular?api_key={TMDB_API_KEY}'
-
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-
-        for movie in data.get('results', []):
-            movie_id = movie.get('id')
-            if movie_id:
-                movie_title = movie.get('title', '')
-                movie_poster = movie.get('poster_path', '')
-                movie_description = movie.get('overview', '')
-                genre_ids = movie.get('genre_ids', [])
-                movie_genre = fetch_genre_names(genre_ids)
-                movie_release_date = datetime.strptime(movie.get('release_date', ''), '%Y-%m-%d').date()
-                movie_runtime = timedelta(minutes=movie.get('runtime', 0))
-
-                movie_details, created = MovieDetails.objects.get_or_create(
-                    movie_id=movie_id,
-                    defaults={
-                        'movie_title': movie_title,
-                        'movie_poster': movie_poster,
-                        'movie_description': movie_description,
-                        'movie_genre': movie_genre,
-                        'movie_release_date': movie_release_date,
-                        'movie_runtime': movie_runtime,
-                    }
-                )
-
-                if not created:
-                    movie_details.movie_title = movie_title
-                    movie_details.movie_poster = movie_poster
-                    movie_details.movie_description = movie_description
-                    movie_details.movie_genre = movie_genre
-                    movie_details.movie_release_date = movie_release_date
-                    movie_details.movie_runtime = movie_runtime
-                    movie_details.save()
-
-        movies = MovieDetails.objects.all()
-        return render(request, 'movies/list_of_movies.html', {'movies': movies})
+    cached_movies = cache.get('cached_movies')
+    
+    if cached_movies is not None:
+        movies = cached_movies
     else:
-        print(f"Error fetching data from TMDB API. Status code: {response.status_code}")
-        return HttpResponse(f"Error fetching data from TMDB API. Status code: {response.status_code}", status=response.status_code)
+        url = f'{BASE_URL}movie/popular?api_key={TMDB_API_KEY}'
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            data = response.json()
+
+            movies = []
+            for movie in data.get('results', []):
+                movie_id = movie.get('id')
+                if movie_id:
+                    movie_title = movie.get('title', '')
+                    movie_poster = movie.get('poster_path', '')
+                    movie_description = movie.get('overview', '')
+                    genre_ids = movie.get('genre_ids', [])
+                    movie_genre = fetch_genre_names(genre_ids)
+                    movie_release_date = datetime.strptime(movie.get('release_date', ''), '%Y-%m-%d').date()
+                    movie_runtime = timedelta(minutes=movie.get('runtime', 0))
+
+                    movie_details, created = MovieDetails.objects.get_or_create(
+                        movie_id=movie_id,
+                        defaults={
+                            'movie_title': movie_title,
+                            'movie_poster': movie_poster,
+                            'movie_description': movie_description,
+                            'movie_genre': movie_genre,
+                            'movie_release_date': movie_release_date,
+                            'movie_runtime': movie_runtime,
+                        }
+                    )
+
+                    if not created:
+                        movie_details.movie_title = movie_title
+                        movie_details.movie_poster = movie_poster
+                        movie_details.movie_description = movie_description
+                        movie_details.movie_genre = movie_genre
+                        movie_details.movie_release_date = movie_release_date
+                        movie_details.movie_runtime = movie_runtime
+                        movie_details.save()
+
+                    movies.append(movie_details)
+
+            cache.set('cached_movies', movies, timeout=60*60*12)  
+
+        else:
+            print(f"Error fetching data from TMDB API. Status code: {response.status_code}")
+            return HttpResponse(f"Error fetching data from TMDB API. Status code: {response.status_code}", status=response.status_code)
+
+    return render(request, 'movies/list_of_movies.html', {'movies': movies})
 
 
 def movie_detail(request, movie_id):

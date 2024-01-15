@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'movies',
     'accounts',
+    'review_groups',
 ]
 
 SITE_ID = 1

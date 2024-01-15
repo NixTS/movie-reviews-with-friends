@@ -12,4 +12,4 @@ class ReviewGroups(models.Model):
     group_members = models.ManyToManyField(CustomUser, related_name='user_groups_membership')
 
     def __str__(self):
-        return self.name
+        return self.group_name

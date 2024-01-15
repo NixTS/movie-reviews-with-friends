@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'movies',
     'accounts',
     'review_groups',
+    'reviews',
 ]
 
 SITE_ID = 1

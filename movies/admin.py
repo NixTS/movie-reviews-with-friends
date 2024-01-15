@@ -14,7 +14,7 @@ class MovieDetailsAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ('Movie Details', {
-            'fields': ('movie_id', 'movie_title', 'movie_genre', 'movie_release_date', 'movie_length', 'movie_description','movie_poster'),
+            'fields': ('movie_id', 'movie_title', 'movie_genre', 'movie_release_date', 'movie_duration', 'movie_description','movie_poster'),
         }),
     )
 

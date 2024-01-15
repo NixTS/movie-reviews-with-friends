@@ -56,7 +56,7 @@ def process_movie_details(movie):
     genre_ids = movie.get('genre_ids', [])
     movie_genre = fetch_genre_names(genre_ids)
     movie_release_date = datetime.strptime(movie.get('release_date', ''), '%Y-%m-%d').date()
-    movie_length = timedelta(minutes=movie.get('runtime', 0))
+    movie_duration = timedelta(minutes=movie.get('runtime', 0))
 
     movie_details, created = MovieDetails.objects.get_or_create(
         movie_id=movie_id,
@@ -66,25 +66,25 @@ def process_movie_details(movie):
             'movie_description': movie_description,
             'movie_genre': movie_genre,
             'movie_release_date': movie_release_date,
-            'movie_length': movie_length,
+            'movie_duration': movie_duration,
         }
     )
 
     if not created:
         update_existing_movie_details(movie_details, movie_title, movie_poster, movie_description, movie_genre,
-                                      movie_release_date, movie_length)
+                                      movie_release_date, movie_duration)
 
     return movie_details
 
 
 def update_existing_movie_details(movie_details, movie_title, movie_poster, movie_description, movie_genre,
-                                  movie_release_date, movie_length):
+                                  movie_release_date, movie_duration):
     movie_details.movie_title = movie_title
     movie_details.movie_poster = movie_poster
     movie_details.movie_description = movie_description
     movie_details.movie_genre = movie_genre
     movie_details.movie_release_date = movie_release_date
-    movie_details.movie_length = movie_length
+    movie_details.movie_duration = movie_duration
     movie_details.save()
 
 

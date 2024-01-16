@@ -9,12 +9,12 @@ class ReviewGroupsAdmin(admin.ModelAdmin):
         )
 
     search_fields = (
-        'group_id', 'group_name'
+        'group_id', 'group_name', 'group_description', 'group_members'
         )
 
     fieldsets = (
         ('Group Details', {
-            'fields': ('group_id', 'group_name', 'group_description', 'group_movies', 'group_members'),
+            'fields': ('group_name', 'group_description', 'group_movies', 'group_members'),
         }),
     )
 

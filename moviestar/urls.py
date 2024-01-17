@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from movies.views import list_of_movies, movie_detail
 from review_groups.views import list_of_groups, group_details
+from accounts.views import list_of_users, user_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,6 @@ urlpatterns = [
     path('movies/<int:movie_id>/', movie_detail, name='movie_details'),
     path('groups/', list_of_groups, name='list_of_groups'),
     path('groups/<int:group_id>/', group_details, name='group_details'),
+    path('users/', list_of_users, name='list_of_users'),
+    path('users/<int:id>/', user_details, name='user_details'),
 ]

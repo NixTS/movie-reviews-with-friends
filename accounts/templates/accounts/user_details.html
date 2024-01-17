@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+
+<body>
+    <h1>{{ user.username }} User Details</h1>
+    <ul>
+        <p>User ID: {{ user.id }}</p>
+        <p>Username: {{ user.username }}</p>
+        <p>User Bio : {{ user.user_bio }}</p>
+        <p>Date Joined: {{ user.date_joined }}</p>
+        </p>
+    </ul>
+    <a href="{{ back_url }}">Back to all Users</a>
+</body>
+
+</html>

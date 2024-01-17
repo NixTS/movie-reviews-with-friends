@@ -13,23 +13,12 @@
     <ul>
         {% for group in groups %}
         <p>Group ID: {{ group.group_id }}</p>
-        <p>Group Name: {{ group.group_name }}</p>
-        <p>Group Description: {{ group.group_description }}</p>
-        <p>Group Movies:
-            {% for movie in group.group_movies.all %}
-            {{ movie.movie_title }}
-            {% endfor %}
-        </p>
-        <p>Group Members:
-            {% for member in group.group_members.all %}
-            {{ member.username }}
-            {% endfor %}
-        </p>
+        <a href="{% url 'group_details' group.group_id %}">
+            <p>Group Name: {{ group.group_name }}</p>
+        </a>
         <br>
         {% endfor %}
     </ul>
-    {% else %}
-    <p>No groups found.</p>
     {% endif %}
 </body>
 

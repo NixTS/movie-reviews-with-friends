@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 from .models import ReviewGroups
 
 
@@ -12,3 +13,8 @@ def list_of_groups(request):
 
 
     return render(request, 'review_groups/display_groups.html', {'groups': groups})
+
+
+def group_details(request, group_id):
+    group = get_object_or_404(ReviewGroups, group_id=group_id)
+    return render(request, 'review_groups/group_details.html', {'group': group, 'back_url': reverse('list_of_groups')})

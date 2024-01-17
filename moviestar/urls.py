@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from movies.views import list_of_movies, movie_detail
-from review_groups.views import list_of_groups
+from review_groups.views import list_of_groups, group_details
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('movies/', list_of_movies, name='movies'),
     path('movies/<int:movie_id>/', movie_detail, name='movie_details'),
     path('groups/', list_of_groups, name='list_of_groups'),
+    path('groups/<int:group_id>/', group_details, name='group_details'),
 ]

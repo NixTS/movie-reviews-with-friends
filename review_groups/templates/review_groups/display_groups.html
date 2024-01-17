@@ -16,7 +16,11 @@
         <p>Group Name: {{ group.group_name }}</p>
         <p>Group Description: {{ group.group_description }}</p>
         <p>Group Movies: {{ group.group_movies }}</p>
-        <p>Group Members: {{ group.group_members }}</p>
+        <p>Group Members:
+            {% for member in group.group_members.all %}
+            {{ member.username }}
+            {% endfor %}
+        </p>
         <br>
         {% endfor %}
     </ul>

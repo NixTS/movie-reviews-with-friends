@@ -5,16 +5,16 @@ from .models import ReviewGroups
 
 class ReviewGroupsAdmin(admin.ModelAdmin):
     list_display = (
-        'group_id', 'group_name'
+        'group_id', 'group_name', 'group_creator'
         )
 
     search_fields = (
-        'group_id', 'group_name', 'group_description', 'group_members'
+        'group_id', 'group_name', 'group_description', 'group_members', 'group_creator'
         )
 
     fieldsets = (
         ('Group Details', {
-            'fields': ('group_name', 'group_description', 'group_movies', 'group_members'),
+            'fields': ('group_name', 'group_creator', 'group_description', 'group_movies', 'group_members'),
         }),
     )
 

@@ -19,6 +19,19 @@
     <p>Release Date: {{ movie.movie_release_date }}</p>
     <p>Runtime: {{ movie.movie_length }}</p>
     {% endif %}
+
+    <h2>Add Movie to Group</h2>
+    <form method="post" action="{% url 'add_movie_to_group' movie_id %}">
+        {% csrf_token %}
+        <label for="group_id">Select Group:</label>
+        <select name="group_id" id="group_id">
+            {% for group in groups %}
+            <option value="{{ group.group_id }}">{{ group.group_name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add to Group</button>
+    </form>
+
     <a href="{{ back_url }}">Back to Movies List</a>
 </body>
 

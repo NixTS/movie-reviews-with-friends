@@ -8,12 +8,22 @@ from moviestar.settings import TMDB_API_KEY
 from .models import MovieDetails
 from review_groups.models import ReviewGroups
 
-# Create your views here.
 
 BASE_URL = 'https://api.themoviedb.org/3/'
 
 
 def list_of_movies(request):
+    """
+    Lists all movies from the popular endpoint.
+
+    Checks for cached data. If cached data is available, it is used; otherwise, data is fetched from the API.
+
+    Parameters:
+        - request: HttpRequest object.
+
+    Returns:
+        - Rendered HTML page with a list of movies.
+    """
     cached_movies = cache.get('cached_movies')
 
     if cached_movies is not None:
@@ -25,6 +35,16 @@ def list_of_movies(request):
 
 
 def fetch_movies_from_api():
+    """
+    Fetches a list of popular movies from The Movie Database (TMDB) API.
+
+    Constructs the API URL, makes a request, and processes the response.
+    If the response status code is 200, the data is cached for future use.
+    If an error occurs during the API request, an error message is printed, and an HTTP response with the error status code is returned.
+
+    Returns:
+        - List of movie details.
+    """
     url = f'{BASE_URL}movie/popular?api_key={TMDB_API_KEY}'
     response = requests.get(url)
 
@@ -40,6 +60,19 @@ def fetch_movies_from_api():
 
 
 def process_movie_data(data):
+    """
+    Processes movie data obtained from The Movie Database (TMDB) API.
+
+    Iterates through the list of movies in the 'results' key of the provided data.
+    For each movie, calls the process_movie_details function to extract detailed information.
+    Returns a list of processed movie details.
+
+    Parameters:
+        - data: Dictionary, data from the TMDB API.
+
+    Returns:
+        - List of movie details.
+    """
     movies = []
 
     for movie in data.get('results', []):
@@ -50,6 +83,19 @@ def process_movie_data(data):
 
 
 def process_movie_details(movie):
+    """
+    Processes raw movie data and creates or updates a MovieDetails object in the database.
+
+    Extracts information such as movie ID, title, poster path, overview, genre IDs,
+    genre names (fetched using fetch_genre_names), release date, and duration.
+    Uses the extracted data to create or update a MovieDetails object in the database.
+
+    Parameters:
+        - movie: Dictionary, data for a movie obtained from the TMDB API.
+
+    Returns:
+        - None
+    """
     movie_id = movie.get('id')
     movie_title = movie.get('title', '')
     movie_poster = movie.get('poster_path', '')
@@ -80,6 +126,24 @@ def process_movie_details(movie):
 
 def update_existing_movie_details(movie_details, movie_title, movie_poster, movie_description, movie_genre,
                                   movie_release_date, movie_duration):
+    """
+    Updates the fields of an existing MovieDetails object with new information.
+
+    Modifies the movie title, poster path, description, genre, release date, and duration
+    of the MovieDetails object. The updated data is then saved to the database.
+
+    Parameters:
+        - movie_details: MovieDetails object to be updated.
+        - movie_title: Updated title for the movie.
+        - movie_poster: Updated poster path for the movie.
+        - movie_description: Updated overview/description for the movie.
+        - movie_genre: Updated list of genre names for the movie.
+        - movie_release_date: Updated release date for the movie.
+        - movie_duration: Updated duration for the movie.
+
+    Returns:
+        - None
+    """
     movie_details.movie_title = movie_title
     movie_details.movie_poster = movie_poster
     movie_details.movie_description = movie_description
@@ -90,6 +154,19 @@ def update_existing_movie_details(movie_details, movie_title, movie_poster, movi
 
 
 def fetch_genre_names(genre_ids):
+    """
+    Fetches genre names corresponding to the given list of genre IDs from The Movie Database (TMDB) API.
+
+    Constructs the API URL for fetching the list of movie genres.
+    Makes a request to the API and extracts genre data.
+    Filters the genre names based on the provided genre IDs.
+    
+    Parameters:
+        - genre_ids: List of integers, genre IDs for which names are to be fetched.
+
+    Returns:
+        - List of genre names.
+    """
     genre_url = f'{BASE_URL}genre/movie/list?api_key={TMDB_API_KEY}'
     response = requests.get(genre_url)
 
@@ -101,8 +178,21 @@ def fetch_genre_names(genre_ids):
     return []
 
 
-
 def movie_detail(request, movie_id):
+    """
+    Displays details for a specific movie and provides the option to add it to a group.
+
+    Retrieves details for the specified movie using its ID.
+    Fetches a list of all available groups.
+    If the request method is POST, redirects to the add_movie_to_group view.
+    
+    Parameters:
+        - request: HttpRequest object.
+        - movie_id: Integer, ID of the movie to display details for.
+
+    Returns:
+        - Rendered HTML page with movie details, groups, and an option to add the movie to a group.
+    """
     movie = get_object_or_404(MovieDetails, movie_id=movie_id)
     groups = ReviewGroups.objects.all()  # Retrieve all groups
 
@@ -113,6 +203,21 @@ def movie_detail(request, movie_id):
 
 
 def add_movie_to_group(request, movie_id):
+    """
+    Handles the process of adding a movie to a group.
+
+    If the request method is POST, extracts the group ID from the form data.
+    Retrieves the movie and group objects based on the provided IDs.
+    Adds the movie to the groups list of movies.
+    Redirects to the movie details page after the movie has been added to the group.
+
+    Parameters:
+        - request: HttpRequest object.
+        - movie_id: Integer, ID of the movie to add to a group.
+
+    Returns:
+        - HttpResponseRedirect to the movie details page.
+    """
     if request.method == 'POST':
         group_id = request.POST.get('group_id')
         movie = get_object_or_404(MovieDetails, movie_id=movie_id)

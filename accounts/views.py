@@ -98,3 +98,14 @@ def edit_own_profile(request):
         form = UserProfileEditForm(instance=request.user)
 
     return render(request, 'profiles/edit_own_profile.html', {'form': form})
+
+
+@login_required
+def user_profile(request):
+    """
+    Displays the user's own profile information.
+
+    Template: 'profile/user_profile.html'
+    """
+    user = request.user
+    return render(request, 'profiles/user_profile.html', {'user': user})

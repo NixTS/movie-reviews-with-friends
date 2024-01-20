@@ -15,22 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from movies.views import list_of_movies, movie_detail, add_movie_to_group
-from review_groups.views import list_of_groups, group_details, create_groups
-from accounts.views import list_of_users, user_details, register, edit_own_profile, user_profile
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('movies/', list_of_movies, name='movies'),
-    path('movies/<int:movie_id>/', movie_detail, name='movie_details'),
-    path('movies/<int:movie_id>/add_to_group/', add_movie_to_group, name='add_movie_to_group'),
-    path('groups/', list_of_groups, name='list_of_groups'),
-    path('groups/<int:group_id>/', group_details, name='group_details'),
-    path('groups/create/', create_groups, name='create_groups'),
-    path('users/', list_of_users, name='list_of_users'),
-    path('users/<int:id>/', user_details, name='user_details'),
-    path('user_profile/', user_profile, name='user_profile'),
-    path('register/', register, name='register'),
-    path('edit_user_profile/', edit_own_profile, name='edit_own_profile'),
+    path('movies/', include('movies.urls')),
+    path('groups/', include('review_groups.urls')),
+    path('users/', include('accounts.urls')),
 ]

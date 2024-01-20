@@ -1,38 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ movie.movie_title }} - Movie Details</title>
-</head>
+{% block title %}Movie details{% endblock %}
 
-<body>
-    <h1>{{ movie.movie_title }}</h1>
-    <p>ID: {{ movie.movie_id }}</p>
-    <p>Title: {{ movie.movie_title }}</p>
-    <p>{% if movie.movie_poster %}
-        <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-    </p>
-    <p>Description: {{ movie.movie_description }}</p>
-    <p>Genre: {{ movie.movie_genre|join:", " }}</p>
-    <p>Release Date: {{ movie.movie_release_date }}</p>
-    <p>Runtime: {{ movie.movie_length }}</p>
-    {% endif %}
+{% block content %}
 
-    <h2>Add Movie to Group</h2>
-    <form method="post" action="{% url 'add_movie_to_group' movie_id %}">
-        {% csrf_token %}
-        <label for="group_id">Select Group:</label>
-        <select name="group_id" id="group_id">
-            {% for group in groups %}
-            <option value="{{ group.group_id }}">{{ group.group_name }}</option>
-            {% endfor %}
-        </select>
-        <button type="submit">Add to Group</button>
-    </form>
+<h1>{{ movie.movie_title }}</h1>
+<p>ID: {{ movie.movie_id }}</p>
+<p>Title: {{ movie.movie_title }}</p>
+<p>{% if movie.movie_poster %}
+    <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+</p>
+<p>Description: {{ movie.movie_description }}</p>
+<p>Genre: {{ movie.movie_genre|join:", " }}</p>
+<p>Release Date: {{ movie.movie_release_date }}</p>
+<p>Runtime: {{ movie.movie_length }}</p>
+{% endif %}
 
-    <a href="{{ back_url }}">Back to Movies List</a>
-</body>
+<h2>Add Movie to Group</h2>
+<form method="post" action="{% url 'add_movie_to_group' movie_id %}">
+    {% csrf_token %}
+    <label for="group_id">Select Group:</label>
+    <select name="group_id" id="group_id">
+        {% for group in groups %}
+        <option value="{{ group.group_id }}">{{ group.group_name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add to Group</button>
+</form>
 
-</html>
+<a href="{{ back_url }}">Back to Movies List</a>
+
+{% endblock %}

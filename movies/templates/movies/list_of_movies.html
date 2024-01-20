@@ -1,27 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movies</title>
-</head>
+{% block title %}List of movies{% endblock %}
 
-<body>
-    <h1>Movies</h1>
-    <ul>
-        {% for movie in movies %}
-        <p>{{ movie.movie_id }}</p>
-        <a href="{% url 'movie_details' movie.movie_id %}">
-            <p>{{ movie.movie_title }}</p>
-            <p>{% if movie.movie_poster %}
-                <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-            </p>
-        </a>
-        {% endif %}
+{% block content %}
 
-        {% endfor %}
-    </ul>
-</body>
+<h1>Movies</h1>
+<ul>
+    {% for movie in movies %}
+    <p>{{ movie.movie_id }}</p>
+    <a href="{% url 'movie_details' movie.movie_id %}">
+        <p>{{ movie.movie_title }}</p>
+        <p>{% if movie.movie_poster %}
+            <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+        </p>
+    </a>
+    {% endif %}
 
-</html>
+    {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from .models import CustomUser
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserProfileEditForm
 
 
 def list_of_users(request):
@@ -76,3 +77,24 @@ def register(request):
         form = RegistrationForm()
 
     return render(request, 'registration/register.html', {'form': form})
+
+
+@login_required
+def edit_own_profile(request):
+    """
+    Displays and allows the logged-in user to update their user profile.
+
+    Handles the GET request to display the user profile form.
+    Handles the POST request to update the user profile when the form is submitted.
+
+    Template: 'accounts/edit_own_profile.html'
+    """
+    if request.method == 'POST':
+        form = UserProfileEditForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')
+    else:
+        form = UserProfileEditForm(instance=request.user)
+
+    return render(request, 'profiles/edit_own_profile.html', {'form': form})

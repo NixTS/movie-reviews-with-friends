@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from movies.views import list_of_movies, movie_detail, add_movie_to_group
 from review_groups.views import list_of_groups, group_details, create_groups
-from accounts.views import list_of_users, user_details, register
+from accounts.views import list_of_users, user_details, register, edit_own_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,4 +31,5 @@ urlpatterns = [
     path('users/', list_of_users, name='list_of_users'),
     path('users/<int:id>/', user_details, name='user_details'),
     path('register/', register, name='register'),
+    path('edit_user_profile/', edit_own_profile, name='edit_own_profile'),
 ]

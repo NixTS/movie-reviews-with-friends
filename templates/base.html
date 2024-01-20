@@ -9,17 +9,36 @@
 
 <body>
     <header>
-        Here should be my Logo-Navbar-Login/Logout/Register
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'movies' %}">Movies</a></li>
+                <li><a href="{% url 'list_of_groups' %}">Groups</a></li>
+                <li><a href="{% url 'list_of_users' %}">Users</a></li>
+                <li>
+                    <a href="{% url 'user_profile' %}">Register</a>
+                    <a href="{% url 'user_profile' %}">Login</a>
+                    <a href="{% url 'user_profile' %}">Logout</a>
+                    <a href="{% url 'user_profile' %}">Your Profile</a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
     <main>
         {% block content %}
-        
+
         {% endblock %}
     </main>
 
     <footer>
-        Here should be my Footer
+        <p>Website created by <a href="https://github.com/NixTS">NixTS.</a></p>
+        <p>{% block copyright %}This project is created solely for educational purposes. It utilizes The Movie Database
+            <a href="https://developer.themoviedb.org/docs/getting-started">(TMDB) API</a> for content, and all rights
+            to the data belong to <a href="https://www.themoviedb.org/">TMDB</a>. This project is not intended for
+            commercial use, and the usage of <a href="https://www.themoviedb.org/">TMDB</a> data is in compliance with
+            <a href="https://www.themoviedb.org/api-terms-of-use">TMDB's terms of service</a>.{% endblock copyright %}
+        </p>
     </footer>
 </body>
 

@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
+from django.contrib.auth import login
 from .models import CustomUser
+from .forms import RegistrationForm
 
 
 def list_of_users(request):
@@ -44,3 +46,33 @@ def user_details(request, id):
     """
     user = get_object_or_404(CustomUser, id=id)
     return render(request, 'accounts/user_details.html', {'user': user, 'back_url': reverse('list_of_users')})
+
+
+def register(request):
+    """
+    View for user registration.
+
+    Handles both GET and POST requests. If the request is a POST request,
+    it validates the registration form. If the form is valid, it creates a new user,
+    logs in the user, and redirects to the movies page. If the request is a GET
+    request, displays the registration form.
+
+    Args:
+        - request: The HTTP object.
+
+    Returns:
+        - If the request is a POST request and the form is valid:
+            Redirects to the movies page after creating and logging in the user.
+        - If the request is a GET request or the form is invalid:
+            Renders the registration form page with the form.
+    """
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('movies')
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'registration/register.html', {'form': form})

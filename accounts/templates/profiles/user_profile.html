@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
+{% block title %}User own profile{% endblock %}
 
-<body>
-    <h1>Your Profile</h1>
-    <p>Username: {{ user.username }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Date of Birth: {{ user.user_date_of_birth }}</p>
-    <p>Bio: {{ user.user_bio }}</p>
+{% block content %}
 
-    <a href="{% url 'edit_own_profile' %}">Edit Profile</a>
-</body>
+<h1>Your Profile</h1>
+<p>Username: {{ user.username }}</p>
+<p>First Name: {{ user.first_name }}</p>
+<p>Last Name: {{ user.last_name }}</p>
+<p>Email: {{ user.email }}</p>
+<p>Date of Birth: {{ user.user_date_of_birth }}</p>
+<p>Bio: {{ user.user_bio }}</p>
 
-</html>
+<a href="{% url 'edit_own_profile' %}">Edit Profile</a>
+
+{% endblock %}

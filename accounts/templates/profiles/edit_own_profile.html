@@ -1,19 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-</head>
+{% block title %}Edit own profile{% endblock %}
 
-<body>
-    <h1>Edit Your Profile Informations</h1>
-    <form method="post" action="{% url 'edit_own_profile' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Profile</button>
-    </form>
-</body>
+{% block content %}
 
-</html>
+<h1>Edit Your Profile Informations</h1>
+<form method="post" action="{% url 'edit_own_profile' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Profile</button>
+</form>
+
+{% endblock %}

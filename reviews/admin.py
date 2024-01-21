@@ -23,12 +23,12 @@ class ReviewAdmin(admin.ModelAdmin):
         )
 
     search_fields = (
-        'review_id', 'review_user', 'review_movie', 'review_title', 'review_group'
+        'review_user', 'review_movie', 'review_title', 'review_group'
         )
 
     fieldsets = (
         ('Reviews', {
-            'fields': ('review_id', 'review_user', 'review_title', 'review_text', 'review_rating', 'review_movie', 'review_group'),
+            'fields': ('review_user', 'review_title', 'review_text', 'review_rating', 'review_movie', 'review_group'),
         }),
     )
 

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Movie review{% endblock %}
+
+{% block content %}
+
+<h1>{{ movie.movie_title }} - {{ group_name }}</h1>
+<p>ID: {{ movie.movie_id }}</p>
+<p>Title: {{ movie.movie_title }}</p>
+<p>{% if movie.movie_poster %}
+    <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+</p>
+<p>Description: {{ movie.movie_description }}</p>
+<p>Genre: {{ movie.movie_genre|join:", " }}</p>
+<p>Release Date: {{ movie.movie_release_date }}</p>
+<p>Runtime: {{ movie.movie_length }}</p>
+{% endif %}
+
+<div>Placeholder for reviews</div>
+
+
+<a href="{{ back_url }}">Back to Group</a>
+
+{% endblock %}

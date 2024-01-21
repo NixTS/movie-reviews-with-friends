@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import ReviewGroups
+from movies.models import MovieDetails
 from .forms import ReviewGroupsForm
 
 
@@ -152,3 +153,32 @@ def delete_group(request, group_id):
         return render(request, 'review_groups/delete_group.html', {'group': group})
     else:
         return render(request, 'review_groups/access_denied.html')
+    
+
+def movie_review(request, group_id, movie_id):
+    """
+    Displays details for a specific movie within a review group.
+
+    Retrieves details for the specified movie using its ID.
+    Fetches a list of all available review groups.
+    
+    Parameters:
+        - request: HttpRequest object.
+        - group_id: Integer, ID of the review group.
+        - movie_id: Integer, ID of the movie to display details for.
+
+    Returns:
+        - Rendered HTML page with movie details within the context of a review group.
+    """
+    review_group = get_object_or_404(ReviewGroups, group_id=group_id)
+    movie = get_object_or_404(MovieDetails, movie_id=movie_id)
+    group_name = review_group.group_name
+
+    back_url = reverse('group_details', kwargs={'group_id': group_id})
+
+    return render(request, 'review_groups/movie_review_in_group.html', {
+        'movie': movie,
+        'group_name': group_name,
+        'review_group': review_group,
+        'back_url': back_url,
+    })

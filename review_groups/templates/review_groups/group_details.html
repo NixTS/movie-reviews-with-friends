@@ -12,14 +12,16 @@
     <div>Group Movies:
         {% for movie in group.group_movies.all %}
         <div>
-            {% if movie.movie_poster %}
-            <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-            {% endif %}
+            <a href="{% url 'movie_review' group_id=group.group_id movie_id=movie.movie_id %}">
+                {% if movie.movie_poster %}
+                <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+                {% endif %}
         </div>
         <div>
             {{ movie.movie_title }}
         </div>
         {% endfor %}
+        </a>
     </div>
     <p>Group Members:
         {% for member in group.group_members.all %}

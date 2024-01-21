@@ -9,11 +9,18 @@
     <p>Group ID: {{ group.group_id }}</p>
     <p>Group Name: {{ group.group_name }}</p>
     <p>Group Description: {{ group.group_description }}</p>
-    <p>Group Movies:
+    <div>Group Movies:
         {% for movie in group.group_movies.all %}
-        {{ movie.movie_title }}
+        <div>
+            {% if movie.movie_poster %}
+            <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+            {% endif %}
+        </div>
+        <div>
+            {{ movie.movie_title }}
+        </div>
         {% endfor %}
-    </p>
+    </div>
     <p>Group Members:
         {% for member in group.group_members.all %}
         {{ member.username }}
@@ -23,8 +30,8 @@
 </ul>
 
 {% if user.is_authenticated and group.group_creator == user %}
-    <a href="{% url 'edit_group' group.group_id %}">Edit Group</a>
-    <a href="{% url 'delete_group' group.group_id %}">Delete Group</a>
+<a href="{% url 'edit_group' group.group_id %}">Edit Group</a>
+<a href="{% url 'delete_group' group.group_id %}">Delete Group</a>
 {% endif %}
 
 <a href="{{ back_url }}">Back to all Groups</a>

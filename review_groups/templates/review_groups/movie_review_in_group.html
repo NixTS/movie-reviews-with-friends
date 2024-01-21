@@ -8,7 +8,7 @@
 <p>ID: {{ movie.movie_id }}</p>
 <p>Title: {{ movie.movie_title }}</p>
 <p>{% if movie.movie_poster %}
-    <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
+  <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
 </p>
 <p>Description: {{ movie.movie_description }}</p>
 <p>Genre: {{ movie.movie_genre|join:", " }}</p>
@@ -16,31 +16,50 @@
 <p>Runtime: {{ movie.movie_length }}</p>
 {% endif %}
 
+
+<div>
+  <h2>Reviews</h2>
+  {% if reviews %}
+  <ul>
+    {% for review in reviews %}
+    <li>
+      <p>Rating: {{ review.review_rating }}</p>
+      <p>Title: {{ review.review_title }}</p>
+      <p>Text: {{ review.review_text }}</p>
+      <p>Author: {{ review.review_user.username }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>No reviews available for this movie yet.</p>
+  {% endif %}
+</div>
+
 <form method="post" action="{% url 'reviews:submit_review' group_id=group.group_id movie_id=movie.movie_id %}">
-    {% csrf_token %}
-    
-    {{ form.non_field_errors }}
-    
-    <div class="form-group">
-      <label for="{{ form.review_rating.id_for_label }}">Rating:</label>
-      {{ form.review_rating }}
-      {{ form.review_rating.errors }}
-    </div>
-    
-    <div class="form-group">
-      <label for="{{ form.review_title.id_for_label }}">Title:</label>
-      {{ form.review_title }}
-      {{ form.review_title.errors }}
-    </div>
-    
-    <div class="form-group">
-      <label for="{{ form.review_text.id_for_label }}">Review:</label>
-      {{ form.review_text }}
-      {{ form.review_text.errors }}
-    </div>
-    
-    <button type="submit">Submit Review</button>
-  </form>
+  {% csrf_token %}
+
+  {{ form.non_field_errors }}
+
+  <div class="form-group">
+    <label for="{{ form.review_rating.id_for_label }}">Rating:</label>
+    {{ form.review_rating }}
+    {{ form.review_rating.errors }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.review_title.id_for_label }}">Title:</label>
+    {{ form.review_title }}
+    {{ form.review_title.errors }}
+  </div>
+
+  <div class="form-group">
+    <label for="{{ form.review_text.id_for_label }}">Review:</label>
+    {{ form.review_text }}
+    {{ form.review_text.errors }}
+  </div>
+
+  <button type="submit">Submit Review</button>
+</form>
 
 <a href="{{ back_url }}">Back to Group</a>
 

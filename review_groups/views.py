@@ -4,6 +4,7 @@ from .models import ReviewGroups
 from movies.models import MovieDetails
 from .forms import ReviewGroupsForm
 from reviews.forms import ReviewForm
+from reviews.views import get_movie_reviews
 
 
 def list_of_groups(request):
@@ -175,12 +176,15 @@ def movie_review(request, group_id, movie_id):
     movie = get_object_or_404(MovieDetails, movie_id=movie_id)
     group_name = review_group.group_name
 
+    reviews = get_movie_reviews(group_id, movie_id)
+
     back_url = reverse('group_details', kwargs={'group_id': group_id})
 
     context = {
     'group': review_group,
     'movie': movie,
     'group_name': group_name,
+    'reviews': reviews,
     'back_url': back_url,
     'form': ReviewForm(),
     }

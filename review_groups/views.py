@@ -81,3 +81,74 @@ def create_groups(request):
         form = ReviewGroupsForm()
         
     return render(request, 'review_groups/create_groups.html', {'form': form})
+
+
+def edit_group(request, group_id):
+    """
+    Handles the editing of review groups.
+
+    If the form is valid, saves the review group and redirects to the 'group_details' view.
+    If the HTTP request method is GET, renders the 'review_groups/edit_group.html' template
+    with the form pre-filled with the current group details for editing.
+    If the HTTP request method is POST, validates the submitted form data.
+
+    Args:
+        - request (HttpRequest): The HTTP request object.
+
+    Returns:
+        - HttpResponse: Rendered HTML page displaying the form for editing a review group.
+
+    Template:
+        - 'review_groups/edit_group.html'
+
+    Redirects:
+        - To the 'group_details' view upon successful editing of a review group.
+    """
+    group = get_object_or_404(ReviewGroups, group_id=group_id)
+
+    if request.user == group.group_creator:
+        if request.method == 'POST':
+            form = ReviewGroupsForm(request.POST, instance=group)
+            if form.is_valid():
+                form.save()
+                return redirect('group_details', group_id=group_id)
+        else:
+            form = ReviewGroupsForm(instance=group)
+
+        return render(request, 'review_groups/edit_group.html', {'form': form, 'group': group})
+    else:
+        return render(request, 'review_groups/access_denied.html')
+    
+
+def delete_group(request, group_id):
+    """
+    Handles the deletion of review groups.
+
+    If the HTTP request method is GET and the logged-in user is the creator of the group,
+    renders the 'review_groups/delete_group.html' template to confirm the deletion.
+    If the HTTP request method is POST and the logged-in user is the creator of the group,
+    deletes the review group and redirects to the 'list_of_groups' view.
+
+    Args:
+        - request (HttpRequest): The HTTP request object.
+        - group_id (int): The ID of the group to be deleted.
+
+    Returns:
+        - HttpResponse: Rendered HTML page for confirming the deletion of a review group.
+
+    Template:
+        - 'review_groups/delete_group.html'
+
+    Redirects:
+        - To the 'list_of_groups' view upon successful deletion of a review group.
+    """
+    group = get_object_or_404(ReviewGroups, group_id=group_id)
+
+    if request.user == group.group_creator:
+        if request.method == 'POST':
+            group.delete()
+            return redirect('list_of_groups')
+
+        return render(request, 'review_groups/delete_group.html', {'group': group})
+    else:
+        return render(request, 'review_groups/access_denied.html')

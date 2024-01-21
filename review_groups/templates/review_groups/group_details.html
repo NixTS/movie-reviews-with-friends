@@ -21,6 +21,12 @@
     </p>
     <p>Group Admin: {{ group.group_creator.username }}</p>
 </ul>
+
+{% if user.is_authenticated and group.group_creator == user %}
+    <a href="{% url 'edit_group' group.group_id %}">Edit Group</a>
+    <a href="{% url 'delete_group' group.group_id %}">Delete Group</a>
+{% endif %}
+
 <a href="{{ back_url }}">Back to all Groups</a>
 
 {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit groups{% endblock %}
+
+{% block content %}
+
+<h1>Edit Group</h1>
+<form method="post" action="{% url 'edit_group' group.group_id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+<a href="{% url 'list_of_groups' %}">Cancel</a>
+
+{% endblock %}

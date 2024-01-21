@@ -3,6 +3,7 @@ from django.urls import reverse
 from .models import ReviewGroups
 from movies.models import MovieDetails
 from .forms import ReviewGroupsForm
+from reviews.forms import ReviewForm
 
 
 def list_of_groups(request):
@@ -176,9 +177,13 @@ def movie_review(request, group_id, movie_id):
 
     back_url = reverse('group_details', kwargs={'group_id': group_id})
 
-    return render(request, 'review_groups/movie_review_in_group.html', {
-        'movie': movie,
-        'group_name': group_name,
-        'review_group': review_group,
-        'back_url': back_url,
-    })
+    context = {
+    'group': review_group,
+    'movie': movie,
+    'group_name': group_name,
+    'back_url': back_url,
+    'form': ReviewForm(),
+    }
+
+    return render(request, 'review_groups/movie_review_in_group.html', context)
+    

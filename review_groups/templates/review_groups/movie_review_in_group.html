@@ -16,8 +16,31 @@
 <p>Runtime: {{ movie.movie_length }}</p>
 {% endif %}
 
-<div>Placeholder for reviews</div>
-
+<form method="post" action="{% url 'reviews:submit_review' group_id=group.group_id movie_id=movie.movie_id %}">
+    {% csrf_token %}
+    
+    {{ form.non_field_errors }}
+    
+    <div class="form-group">
+      <label for="{{ form.review_rating.id_for_label }}">Rating:</label>
+      {{ form.review_rating }}
+      {{ form.review_rating.errors }}
+    </div>
+    
+    <div class="form-group">
+      <label for="{{ form.review_title.id_for_label }}">Title:</label>
+      {{ form.review_title }}
+      {{ form.review_title.errors }}
+    </div>
+    
+    <div class="form-group">
+      <label for="{{ form.review_text.id_for_label }}">Review:</label>
+      {{ form.review_text }}
+      {{ form.review_text.errors }}
+    </div>
+    
+    <button type="submit">Submit Review</button>
+  </form>
 
 <a href="{{ back_url }}">Back to Group</a>
 

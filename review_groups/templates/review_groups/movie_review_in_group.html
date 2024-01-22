@@ -4,14 +4,16 @@
 
 {% block content %}
 
-<div class="container">
-  <h1 class="display-4 text-left my-4">{{ movie.movie_title }} - {{ group.group_name }}</h1>
+<div class="container mt-4">
+  <h1 class="text-left display-4 mb-4">{{ movie.movie_title }} - {{ group.group_name }}</h1>
+
   <div class="row">
     {% if movie.movie_poster %}
     <div class="col-md-4">
       <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid">
     </div>
     {% endif %}
+
     <div class="col-md-8">
       <p class="lead mb-3">{{ movie.movie_description }}</p>
       <ul class="list-unstyled mb-4">
@@ -38,7 +40,8 @@
   </div>
 
   <div class="mt-4">
-    <h2 class="text-left display-6">Reviews</h2>
+    <h2 class="text-left display-6 mb-4">Reviews</h2>
+
     {% if reviews %}
     <ul class="list-unstyled">
       {% for review in reviews %}
@@ -74,7 +77,8 @@
       {{ form.non_field_errors }}
 
       <div class="form-group row">
-        <label for="{{ form.review_rating.id_for_label }}" class="col-sm-2 col-form-label"><strong>Rating</strong></label>
+        <label for="{{ form.review_rating.id_for_label }}"
+          class="col-sm-2 col-form-label"><strong>Rating</strong></label>
         <div class="col-sm-10">
           {{ form.review_rating }}
           {{ form.review_rating.errors }}
@@ -82,7 +86,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="{{ form.review_title.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review title</strong></label>
+        <label for="{{ form.review_title.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review
+            title</strong></label>
         <div class="col-sm-10">
           {{ form.review_title }}
           {{ form.review_title.errors }}
@@ -90,7 +95,8 @@
       </div>
 
       <div class="form-group row">
-        <label for="{{ form.review_text.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review text</strong></label>
+        <label for="{{ form.review_text.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review
+            text</strong></label>
         <div class="col-sm-10">
           {{ form.review_text }}
           {{ form.review_text.errors }}

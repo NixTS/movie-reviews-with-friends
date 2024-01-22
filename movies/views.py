@@ -8,6 +8,7 @@ from datetime import datetime, timedelta
 from moviestar.settings import TMDB_API_KEY
 from .models import MovieDetails
 from review_groups.models import ReviewGroups
+from accounts.models import CustomUser
 
 
 BASE_URL = 'https://api.themoviedb.org/3/'
@@ -221,9 +222,10 @@ def add_movie_to_group(request, movie_id):
         - HttpResponseRedirect to the movie details page.
     """
     if request.method == 'POST':
-        group_id = request.POST.get('group_id')
         movie = get_object_or_404(MovieDetails, movie_id=movie_id)
-        group = get_object_or_404(ReviewGroups, group_id=group_id)
+        group_id = request.POST.get('group_id')
+        
+        group = get_object_or_404(ReviewGroups, group_id=group_id, group_members=request.user)
 
         group.group_movies.add(movie)
 

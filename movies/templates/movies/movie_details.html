@@ -46,7 +46,7 @@
                 <label for="group_id"></label>
                 <select class="form-control my-4" name="group_id" id="group_id" placeholder="Select a group">
                     <option value="" disabled selected>Select a group</option>
-                    {% for group in groups %}
+                    {% for group in user.user_groups_membership.all %}
                     <option value="{{ group.group_id }}">{{ group.group_name }}</option>
                     {% endfor %}
                 </select>
@@ -54,7 +54,6 @@
             <button type="submit" class="btn btn-primary">Add to Group</button>
         </form>
     </div>
-    {% else %}
     {% endif %}
 
     <a href="{{ back_url }}" class="btn btn-secondary mt-5">Back to Movies List</a>

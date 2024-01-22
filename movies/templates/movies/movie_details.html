@@ -8,9 +8,9 @@
     <h1 class="display-4 text-left my-4">{{ movie.movie_title }}</h1>
     <div class="row">
         {% if movie.movie_poster %}
-            <div class="col-md-4">
-                <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid">
-            </div>
+        <div class="col-md-4">
+            <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid">
+        </div>
         {% endif %}
         <div class="col-md-8">
             <p class="lead mb-3">{{ movie.movie_description }}</p>
@@ -37,8 +37,9 @@
         </div>
     </div>
 
+    {% if user.is_authenticated %}
     <div class="mt-4">
-        <h2 class="text-left display-6">{{ "Add Movie to Group" }}</h2>
+        <h2 class="text-left display-6">Add Movie to Group</h2>
         <form method="post" action="{% url 'add_movie_to_group' movie_id %}">
             {% csrf_token %}
             <div class="form-group mb-3">
@@ -46,13 +47,15 @@
                 <select class="form-control my-4" name="group_id" id="group_id" placeholder="Select a group">
                     <option value="" disabled selected>Select a group</option>
                     {% for group in groups %}
-                        <option value="{{ group.group_id }}">{{ group.group_name }}</option>
+                    <option value="{{ group.group_id }}">{{ group.group_name }}</option>
                     {% endfor %}
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Add to Group</button>
         </form>
     </div>
+    {% else %}
+    {% endif %}
 
     <a href="{{ back_url }}" class="btn btn-secondary mt-5">Back to Movies List</a>
 </div>

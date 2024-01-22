@@ -1,6 +1,7 @@
 import requests
 from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime, timedelta
@@ -202,6 +203,7 @@ def movie_detail(request, movie_id):
     return render(request, 'movies/movie_details.html', {'movie': movie, 'groups': groups, 'back_url': reverse('movies'), 'movie_id': movie_id})
 
 
+@login_required
 def add_movie_to_group(request, movie_id):
     """
     Handles the process of adding a movie to a group.
@@ -223,8 +225,6 @@ def add_movie_to_group(request, movie_id):
         movie = get_object_or_404(MovieDetails, movie_id=movie_id)
         group = get_object_or_404(ReviewGroups, group_id=group_id)
 
-        # Add the movie to the group
         group.group_movies.add(movie)
 
-        # Redirect to the movie details page
         return HttpResponseRedirect(reverse('movie_details', args=[movie_id]))

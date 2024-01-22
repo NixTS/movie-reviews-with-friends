@@ -34,7 +34,7 @@ TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-
+CSRF_TRUSTED_ORIGINS = ['https://movie-reviews-with-friends-96186426856b.herokuapp.com']
 
 # Application definition
 

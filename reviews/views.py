@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .forms import ReviewForm
 from .models import Review
 from review_groups.models import ReviewGroups
@@ -56,3 +56,28 @@ def get_movie_reviews(group_id, movie_id):
 
     reviews = Review.objects.filter(review_group=review_group, review_movie=movie)
     return reviews
+
+
+@login_required
+def edit_review(request, group_id, movie_id, review_id):
+    review = get_object_or_404(Review, pk=review_id, review_user=request.user)
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect('movie_review', group_id=group_id, movie_id=movie_id)
+    else:
+        form = ReviewForm(instance=review)
+
+    return render(request, 'reviews/edit_review.html', {'form': form, 'review': review})
+
+@login_required
+def delete_review(request, group_id, movie_id, review_id):
+    review = get_object_or_404(Review, pk=review_id, review_user=request.user)
+
+    if request.method == 'POST':
+        review.delete()
+        return redirect('movie_review', group_id=group_id, movie_id=movie_id)
+
+    return render(request, 'reviews/delete_review.html', {'review': review})

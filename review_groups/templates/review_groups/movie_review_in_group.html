@@ -26,7 +26,13 @@
       <p>Rating: {{ review.review_rating }}</p>
       <p>Title: {{ review.review_title }}</p>
       <p>Text: {{ review.review_text }}</p>
-      <p>Author: {{ review.review_user.username }}</p>
+      <p>Author: {{ review.review_user }}</p>
+      {% if review.review_user == user %}
+      <a
+        href="{% url 'reviews:edit_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}">Edit</a>
+      <a
+        href="{% url 'reviews:delete_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}">Delete</a>
+      {% endif %}
     </li>
     {% endfor %}
   </ul>

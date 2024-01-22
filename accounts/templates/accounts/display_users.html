@@ -4,17 +4,19 @@
 
 {% block content %}
 
-<h1>List of Users</h1>
-{% if users %}
-<ul>
-    {% for user in users %}
-    <p>User ID: {{ user.id }}</p>
-    <a href="{% url 'user_details' user.id %}">
-        <p>Username: {{ user.username }}</p>
-    </a>
-    <br>
-    {% endfor %}
-</ul>
-{% endif %}
+<div class="container mt-4">
+    <h2 class="text-left display-6 mb-4">List of Users</h2>
+    {% if users %}
+        <ul class="list-group">
+            {% for user in users %}
+                <li class="list-group-item mb-4 border rounded py-4">
+                    <a href="{% url 'user_details' user.id %}" class="text-decoration-none">
+                        <h2 class="h4 mb-0">{{ user.username }}</h2>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
 
 {% endblock %}

@@ -16,7 +16,7 @@
     <title>Movie Review With Friends</title>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -50,20 +50,22 @@
         <!-- end Navbar -->
     </header>
 
-    <main>
+    <main class="container flex-grow-1">
         {% block content %}
 
         {% endblock %}
     </main>
 
-    <footer>
-        <p>Website created by <a href="https://github.com/NixTS">NixTS.</a></p>
-        <p>{% block copyright %}This project is created solely for educational purposes. It utilizes The Movie Database
-            <a href="https://developer.themoviedb.org/docs/getting-started">(TMDB) API</a> for content, and all rights
-            to the data belong to <a href="https://www.themoviedb.org/">TMDB</a>. This project is not intended for
-            commercial use, and the usage of <a href="https://www.themoviedb.org/">TMDB</a> data is in compliance with
-            <a href="https://www.themoviedb.org/api-terms-of-use">TMDB's terms of service</a>.{% endblock copyright %}
-        </p>
+    <footer class="bg-body-tertiary py-4 mt-5">
+        <div class="container text-center">
+            <p>Website created by <a href="https://github.com/NixTS" class="link-underline-info">NixTS.</a></p>
+            <p>{% block copyright %}This project is created solely for educational purposes. It utilizes The Movie Database
+                <a href="https://developer.themoviedb.org/docs/getting-started" class="link-underline-info">(TMDB) API</a> for content, and all rights
+                to the data belong to <a href="https://www.themoviedb.org/" class="link-underline-info">TMDB</a>. This project is not intended for
+                commercial use, and the usage of <a href="https://www.themoviedb.org/" class="link-underline-info">TMDB</a> data is in compliance with
+                <a href="https://www.themoviedb.org/api-terms-of-use" class="link-underline-info">TMDB's terms of service</a>.{% endblock copyright %}
+            </p>
+        </div>
     </footer>
 </body>
 

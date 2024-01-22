@@ -4,18 +4,25 @@
 
 {% block content %}
 
+<!-- delete review -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Delete Review</h1>
 
     <p>Are you sure you want to delete the review?</p>
     <p>This review will be deleted <strong><u>forever</u></strong> and can't be brought back.</p>
 
+    <!-- review delete button -->
     <form method="post" action="">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Delete</button>
+        <button type="submit" class="btn btn-danger">Delete!</button>
     </form>
+    <!-- end review delete button -->
 
-    <a href="{% url 'movie_review' group_id=review.review_group_id movie_id=review.review_movie_id %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- back to group/movie_review button -->
+    <a href="{% url 'movie_review' group_id=review.review_group_id movie_id=review.review_movie_id %}"
+        class="btn btn-secondary mt-3">Cancel</a>
+    <!-- end back to group/movie_review button -->
 </div>
+<!-- end delete review -->
 
 {% endblock %}

@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- group details -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">{{ group.group_name }}</h1>
 
@@ -14,6 +15,7 @@
     <h2 class="text-left display-6">Group Movies</h2>
     <p class="subtle-italic">Click on a movie to see or write a review.</p>
 
+    <!-- seperate movie details for groups -->
     <div class="row mb-4">
         {% for movie in group.group_movies.all %}
         <div class="col-md-3 mb-4">
@@ -32,6 +34,7 @@
         </div>
         {% endfor %}
     </div>
+    <!-- end seperate movie details for groups -->
 
     <h2 class="text-left display-6">Group Admin</h2>
     {% for member in group.group_members.all %}
@@ -68,13 +71,11 @@
     <p>Login to join the group</p>
     {% endif %}
 
+    <!-- back to display_groups button -->
     <a href="{{ back_url }}" class="btn btn-secondary mt-4">Back to all Groups</a>
-
-
+    <!-- end back to display_groups button -->
 
 </div>
-
-
-
+<!-- end group details -->
 
 {% endblock %}

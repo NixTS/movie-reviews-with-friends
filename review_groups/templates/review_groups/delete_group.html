@@ -4,18 +4,25 @@
 
 {% block content %}
 
+<!-- delete group -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Delete Group</h1>
 
     <p>Are you sure you want to delete the group <strong>{{ group.group_name }}</strong>?</p>
     <p>This group and its content will be deleted <strong><u>forever</u></strong> and can't be brought back!</p>
 
+    <!-- delete group button -->
     <form method="post" action="{% url 'delete_group' group.group_id %}">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Yes, delete!</button>
+        <button type="submit" class="btn btn-danger">Delete!</button>
     </form>
+    <!-- end delete group button -->
 
+    <!-- back to group with id -->
     <a href="{% url 'group_details' group.group_id %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- end delete group -->
+
 </div>
+<!-- end delete group -->
 
 {% endblock %}

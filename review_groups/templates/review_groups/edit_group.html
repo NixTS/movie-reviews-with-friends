@@ -4,33 +4,40 @@
 
 {% block content %}
 
+<!-- edit group -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Edit Group</h1>
 
-        <form method="post" action="{% url 'edit_group' group.group_id %}">
-            {% csrf_token %}
+    <!-- edit group form -->
+    <form method="post" action="{% url 'edit_group' group.group_id %}">
+        {% csrf_token %}
 
-            <div class="form-group row">
-                <label for="{{ form.group_name.id_for_label }}" class="col-sm-2 col-form-label">Group Name:</label>
-                <div class="col-sm-10">
-                    {{ form.group_name }}
-                    {{ form.group_name.errors }}
-                </div>
+        <div class="form-group row">
+            <label for="{{ form.group_name.id_for_label }}" class="col-sm-2 col-form-label">Group Name:</label>
+            <div class="col-sm-10">
+                {{ form.group_name }}
+                {{ form.group_name.errors }}
             </div>
+        </div>
 
-            <div class="form-group row">
-                <label for="{{ form.group_description.id_for_label }}" class="col-sm-2 col-form-label">Group
-                    Description:</label>
-                <div class="col-sm-10">
-                    {{ form.group_description }}
-                    {{ form.group_description.errors }}
-                </div>
+        <div class="form-group row">
+            <label for="{{ form.group_description.id_for_label }}" class="col-sm-2 col-form-label">Group
+                Description:</label>
+            <div class="col-sm-10">
+                {{ form.group_description }}
+                {{ form.group_description.errors }}
             </div>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+    <!-- end edit group form -->
 
-        <a href="{% url 'list_of_groups' %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- back to list of groups button -->
+    <a href="{% url 'list_of_groups' %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- end back to list of groups button -->
+
 </div>
+<!-- end edit group -->
 
 {% endblock %}

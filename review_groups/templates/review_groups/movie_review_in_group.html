@@ -4,7 +4,11 @@
 
 {% block content %}
 
+
+<!-- movie review in group -->
 <div class="container mt-4">
+
+  <!-- display movie to review -->
   <h1 class="text-left display-4 mb-4">{{ movie.movie_title }} - {{ group.group_name }}</h1>
 
   <div class="row">
@@ -38,7 +42,9 @@
       </ul>
     </div>
   </div>
+  <!-- end display movie to review -->
 
+  <!-- displays reviews -->
   <div class="mt-4">
     <h2 class="text-left display-6 mb-4">Reviews</h2>
 
@@ -67,10 +73,13 @@
     <p>No reviews available for this movie yet.</p>
     {% endif %}
   </div>
+  <!-- end displays reviews -->
 
+  <!-- write a review -->
   <div class="mt-4">
     <h2 class="text-left display-6 mb-4">Submit a Review</h2>
 
+    <!-- write a review form -->
     <form method="post" action="{% url 'reviews:submit_review' group_id=group.group_id movie_id=movie.movie_id %}">
       {% csrf_token %}
 
@@ -109,9 +118,15 @@
         </div>
       </div>
     </form>
+    <!-- end write a review form -->
+    <!-- end write a review -->
 
+    <!-- back to group_details button -->
     <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to Group</a>
+    <!-- end back to group_details button -->
+
   </div>
 </div>
+<!-- end movie review in group -->
 
 {% endblock %}

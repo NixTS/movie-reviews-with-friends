@@ -4,9 +4,11 @@
 
 {% block content %}
 
+<!-- create group -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Create a new Group</h1>
 
+    <!-- create group form -->
     <form method="post" action="{% url 'create_groups' %}">
         {% csrf_token %}
 
@@ -30,8 +32,12 @@
         </div>
         <button type="submit" class="btn btn-primary">Create Group</button>
     </form>
+    <!-- end create group form -->
 
+    <!-- back to display_gtoups -->
     <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to all Groups</a>
-</div>
+    <!-- end back to display_gtoups -->
 
+</div>
+<!-- end create group -->
 {% endblock %}

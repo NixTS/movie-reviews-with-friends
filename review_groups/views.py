@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from .models import ReviewGroups
 from movies.models import MovieDetails
@@ -191,3 +192,28 @@ def movie_review(request, group_id, movie_id):
 
     return render(request, 'review_groups/movie_review_in_group.html', context)
     
+
+@login_required
+def join_leave_group(request, group_id):
+    """
+    Handles the user's request to join or leave a review group.
+
+    Retrieves the specified review group using its ID.
+    Checks if the requesting user is already a member of the group.
+    If the user is a member, removes them from the group; otherwise, adds them to the group.
+
+    Parameters:
+        - request: HttpRequest object.
+        - group_id: Integer, ID of the review group to join or leave.
+
+    Returns:
+        - Redirects to the 'group_details' page for the specified review group after the join/leave action.
+    """
+    group = ReviewGroups.objects.get(pk=group_id)
+
+    if request.user in group.group_members.all():
+        group.group_members.remove(request.user)
+    else:
+        group.group_members.add(request.user)
+
+    return redirect('group_details', group_id=group_id)

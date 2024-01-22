@@ -46,13 +46,32 @@
     {% endfor %}
 
     {% if user.is_authenticated and group.group_creator == user %}
-    <div class="mt-4">
+    <div class="mt-4 mb-4">
         <a href="{% url 'edit_group' group.group_id %}" class="btn btn-primary mr-2">Edit Group</a>
         <a href="{% url 'delete_group' group.group_id %}" class="btn btn-danger">Delete Group</a>
     </div>
     {% endif %}
 
-    <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to all Groups</a>
+    {% if user.is_authenticated %}
+    {% if user in group.group_members.all %}
+    <form action="{% url 'join_leave_group' group.group_id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Leave Group</button>
+    </form>
+    {% else %}
+    <form action="{% url 'join_leave_group' group.group_id %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Join Group</button>
+    </form>
+    {% endif %}
+    {% else %}
+    <p>Login to join the group</p>
+    {% endif %}
+
+    <a href="{{ back_url }}" class="btn btn-secondary mt-4">Back to all Groups</a>
+
+
+
 </div>
 
 

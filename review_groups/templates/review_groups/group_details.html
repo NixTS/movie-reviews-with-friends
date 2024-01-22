@@ -4,38 +4,58 @@
 
 {% block content %}
 
-<h1>{{ group.group_name }} Group Details</h1>
-<ul>
-    <p>Group ID: {{ group.group_id }}</p>
-    <p>Group Name: {{ group.group_name }}</p>
-    <p>Group Description: {{ group.group_description }}</p>
-    <div>Group Movies:
-        {% for movie in group.group_movies.all %}
-        <div>
-            <a href="{% url 'movie_review' group_id=group.group_id movie_id=movie.movie_id %}">
-                {% if movie.movie_poster %}
-                <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-                {% endif %}
-        </div>
-        <div>
-            {{ movie.movie_title }}
-        </div>
-        {% endfor %}
-        </a>
+<div class="container">
+    <h1 class="display-4 text-left my-4">{{ group.group_name }}</h1>
+
+    <div class="group-info mb-4">
+        <p>{{ group.group_description }}</p>
     </div>
-    <p>Group Members:
-        {% for member in group.group_members.all %}
-        {{ member.username }}
+
+    <h2 class="text-left display-6">Group Movies</h2>
+    <p class="subtle-italic">Click on a movie to see or write a review.</p>
+
+    <div class="row mb-4">
+        {% for movie in group.group_movies.all %}
+        <div class="col-md-3 mb-4">
+            <div class="card h-100">
+                <a href="{% url 'movie_review' group_id=group.group_id movie_id=movie.movie_id %}"
+                    class="d-flex flex-column justify-content-between">
+                    <div class="card-body p-0">
+                        {% if movie.movie_poster %}
+                        <img src="{{ movie.get_poster_url }}" alt="Movie Poster"
+                            class="img-fluid rounded-top rounded-10 mb-3">
+                        {% endif %}
+                        <span class="d-block w-100 m-3 text-dark">{{ movie.movie_title }}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
         {% endfor %}
-    </p>
-    <p>Group Admin: {{ group.group_creator.username }}</p>
-</ul>
+    </div>
 
-{% if user.is_authenticated and group.group_creator == user %}
-<a href="{% url 'edit_group' group.group_id %}">Edit Group</a>
-<a href="{% url 'delete_group' group.group_id %}">Delete Group</a>
-{% endif %}
+    <h2 class="text-left display-6">Group Admin</h2>
+    {% for member in group.group_members.all %}
+    {% if member == group.group_creator %}
+    <p>{{ member.username }}</p>
+    {% endif %}
+    {% endfor %}
 
-<a href="{{ back_url }}">Back to all Groups</a>
+    <h2 class="text-left display-6">Group Members</h2>
+    {% for member in group.group_members.all %}
+    <p>{{ member.username }}</p>
+    {% endfor %}
+
+    {% if user.is_authenticated and group.group_creator == user %}
+    <div class="mt-4">
+        <a href="{% url 'edit_group' group.group_id %}" class="btn btn-primary mr-2">Edit Group</a>
+        <a href="{% url 'delete_group' group.group_id %}" class="btn btn-danger">Delete Group</a>
+    </div>
+    {% endif %}
+
+    <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to all Groups</a>
+</div>
+
+
+
 
 {% endblock %}

@@ -12,3 +12,10 @@ a {
 .card-body {
     height: 550px;
 }
+
+/* --------------------------------------------------------- text adjustments */
+
+.subtle-italic {
+    font-style: italic;
+    opacity: 0.7;
+}

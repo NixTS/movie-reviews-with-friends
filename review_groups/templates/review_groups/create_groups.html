@@ -4,21 +4,34 @@
 
 {% block content %}
 
-<h2>Create a New Group</h2>
-<form method="post" action="{% url 'create_groups' %}">
-    {% csrf_token %}
+<div class="container mt-4">
+    <h1 class="text-left display-4 mb-4">Create a new Group</h1>
 
-    <div class="form-group">
-        <label for="group_name">Group Name:</label>
-        <input type="text" name="group_name" id="group_name" required>
-    </div>
+    <form method="post" action="{% url 'create_groups' %}">
+        {% csrf_token %}
 
-    <div class="form-group">
-        <label for="group_description">Group Description:</label>
-        <textarea name="group_description" id="group_description" rows="4"></textarea>
-    </div>
+        <div class="form-group row">
+            <label for="group_name" class="col-sm-2 col-form-label">Group Name:</label>
+            <div class="col-sm-10">
+                <input type="text" name="group_name" id="group_name" class="form-control" required>
+            </div>
+        </div>
 
-    <button type="submit">Create Group</button>
-</form>
+        <div class="form-group row">
+            <label for="group_description" class="col-sm-2 col-form-label">Group Description:</label>
+            <div class="col-sm-10">
+                <textarea name="group_description" id="group_description" class="form-control" rows="4"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Group</button>
+    </form>
+
+    <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to all Groups</a>
+</div>
 
 {% endblock %}

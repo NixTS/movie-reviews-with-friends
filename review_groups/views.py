@@ -83,7 +83,7 @@ def create_groups(request):
     else:
         form = ReviewGroupsForm()
         
-    return render(request, 'review_groups/create_groups.html', {'form': form})
+    return render(request, 'review_groups/create_groups.html', {'form': form, 'back_url': reverse('list_of_groups')})
 
 
 def edit_group(request, group_id):

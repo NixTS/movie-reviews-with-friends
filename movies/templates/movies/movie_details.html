@@ -4,30 +4,58 @@
 
 {% block content %}
 
-<h1>{{ movie.movie_title }}</h1>
-<p>ID: {{ movie.movie_id }}</p>
-<p>Title: {{ movie.movie_title }}</p>
-<p>{% if movie.movie_poster %}
-    <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-</p>
-<p>Description: {{ movie.movie_description }}</p>
-<p>Genre: {{ movie.movie_genre|join:", " }}</p>
-<p>Release Date: {{ movie.movie_release_date }}</p>
-<p>Runtime: {{ movie.movie_length }}</p>
-{% endif %}
+<div class="container">
+    <h1 class="display-4 text-left my-4">{{ movie.movie_title }}</h1>
+    <div class="row">
+        {% if movie.movie_poster %}
+            <div class="col-md-4">
+                <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid">
+            </div>
+        {% endif %}
+        <div class="col-md-8">
+            <p class="lead mb-3">{{ movie.movie_description }}</p>
+            <ul class="list-unstyled mb-4">
+                <li>
+                    <div class="row">
+                        <div class="col-md-3"><strong>Genre:</strong></div>
+                        <div class="col-md-9">{{ movie.movie_genre|join:", " }}</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-md-3"><strong>Release Date:</strong></div>
+                        <div class="col-md-9">{{ movie.movie_release_date }}</div>
+                    </div>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-md-3"><strong>Runtime:</strong></div>
+                        <div class="col-md-9">{{ movie.movie_length }}</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 
-<h2>Add Movie to Group</h2>
-<form method="post" action="{% url 'add_movie_to_group' movie_id %}">
-    {% csrf_token %}
-    <label for="group_id">Select Group:</label>
-    <select name="group_id" id="group_id">
-        {% for group in groups %}
-        <option value="{{ group.group_id }}">{{ group.group_name }}</option>
-        {% endfor %}
-    </select>
-    <button type="submit">Add to Group</button>
-</form>
+    <div class="mt-4">
+        <h2>{{ "Add Movie to Group" }}</h2>
+        <form method="post" action="{% url 'add_movie_to_group' movie_id %}">
+            {% csrf_token %}
+            <div class="form-group mb-3">
+                <label for="group_id"></label>
+                <select class="form-control my-4" name="group_id" id="group_id" placeholder="Select a group">
+                    <option value="" disabled selected>Select a group</option>
+                    {% for group in groups %}
+                        <option value="{{ group.group_id }}">{{ group.group_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Group</button>
+        </form>
+    </div>
 
-<a href="{{ back_url }}">Back to Movies List</a>
+    <a href="{{ back_url }}" class="btn btn-secondary mt-5">Back to Movies List</a>
+</div>
+
 
 {% endblock %}

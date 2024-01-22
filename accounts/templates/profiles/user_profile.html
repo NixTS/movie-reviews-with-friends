@@ -4,14 +4,60 @@
 
 {% block content %}
 
-<h1>Your Profile</h1>
-<p>Username: {{ user.username }}</p>
-<p>First Name: {{ user.first_name }}</p>
-<p>Last Name: {{ user.last_name }}</p>
-<p>Email: {{ user.email }}</p>
-<p>Date of Birth: {{ user.user_date_of_birth }}</p>
-<p>Bio: {{ user.user_bio }}</p>
+<div class="container mt-4">
+    <h1 class="text-left display-4 mb-4">Your Profile</h1>
 
-<a href="{% url 'edit_own_profile' %}">Edit Profile</a>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-4">
+                <p class="text-muted">Displayed in your public profile</p>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-4 col-form-label"><strong>Username</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.username }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="bio" class="col-sm-4 col-form-label"><strong>Bio</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.user_bio }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-4">
+                <p class="text-muted">Private information, not visible to the public</p>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-4 col-form-label"><strong>First Name</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.first_name }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-4 col-form-label"><strong>Last Name</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.last_name }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-4 col-form-label"><strong>Email</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.email }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-4 col-form-label"><strong>Date of Birth</strong></label>
+                    <div class="col-sm-8">
+                        {{ user.user_date_of_birth }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'edit_own_profile' %}" class="btn btn-primary mt-3">Edit Profile</a>
+</div>
 
 {% endblock %}

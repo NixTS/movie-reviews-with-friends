@@ -4,69 +4,108 @@
 
 {% block content %}
 
-<h1>{{ movie.movie_title }} - {{ group_name }}</h1>
-<p>ID: {{ movie.movie_id }}</p>
-<p>Title: {{ movie.movie_title }}</p>
-<p>{% if movie.movie_poster %}
-  <img src="{{ movie.get_poster_url }}" alt="Movie Poster">
-</p>
-<p>Description: {{ movie.movie_description }}</p>
-<p>Genre: {{ movie.movie_genre|join:", " }}</p>
-<p>Release Date: {{ movie.movie_release_date }}</p>
-<p>Runtime: {{ movie.movie_length }}</p>
-{% endif %}
+<div class="container">
+  <h1 class="display-4 text-left my-4">{{ movie.movie_title }} - {{ group.group_name }}</h1>
+  <div class="row">
+    {% if movie.movie_poster %}
+    <div class="col-md-4">
+      <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid">
+    </div>
+    {% endif %}
+    <div class="col-md-8">
+      <p class="lead mb-3">{{ movie.movie_description }}</p>
+      <ul class="list-unstyled mb-4">
+        <li>
+          <div class="row">
+            <div class="col-md-3"><strong>Genre</strong></div>
+            <div class="col-md-9">{{ movie.movie_genre|join:", " }}</div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md-3"><strong>Release Date</strong></div>
+            <div class="col-md-9">{{ movie.movie_release_date }}</div>
+          </div>
+        </li>
+        <li>
+          <div class="row">
+            <div class="col-md-3"><strong>Runtime</strong></div>
+            <div class="col-md-9">{{ movie.movie_length }}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 
+  <div class="mt-4">
+    <h2 class="text-left display-6">Reviews</h2>
+    {% if reviews %}
+    <ul class="list-unstyled">
+      {% for review in reviews %}
+      <li class="mb-4">
+        <div class="card">
+          <div class="card-body">
+            <p class="card-title"><strong>A review by {{ review.review_user }}</strong></p>
+            <p><strong>Rating:</strong> {{ review.review_rating }}</p>
+            <p><strong>{{ review.review_title }}</strong></p>
+            <p>{{ review.review_text }}</p>
+            {% if review.review_user == user %}
+            <a href="{% url 'reviews:edit_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}"
+              class="btn btn-primary btn-sm">Edit</a>
+            <a href="{% url 'reviews:delete_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}"
+              class="btn btn-danger btn-sm">Delete</a>
+            {% endif %}
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No reviews available for this movie yet.</p>
+    {% endif %}
+  </div>
 
-<div>
-  <h2>Reviews</h2>
-  {% if reviews %}
-  <ul>
-    {% for review in reviews %}
-    <li>
-      <p>Rating: {{ review.review_rating }}</p>
-      <p>Title: {{ review.review_title }}</p>
-      <p>Text: {{ review.review_text }}</p>
-      <p>Author: {{ review.review_user }}</p>
-      {% if review.review_user == user %}
-      <a
-        href="{% url 'reviews:edit_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}">Edit</a>
-      <a
-        href="{% url 'reviews:delete_review' group_id=group.group_id movie_id=movie.movie_id review_id=review.review_id %}">Delete</a>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-  <p>No reviews available for this movie yet.</p>
-  {% endif %}
+  <div class="mt-4">
+    <h2 class="text-left display-6 mb-4">Submit a Review</h2>
+
+    <form method="post" action="{% url 'reviews:submit_review' group_id=group.group_id movie_id=movie.movie_id %}">
+      {% csrf_token %}
+
+      {{ form.non_field_errors }}
+
+      <div class="form-group row">
+        <label for="{{ form.review_rating.id_for_label }}" class="col-sm-2 col-form-label"><strong>Rating</strong></label>
+        <div class="col-sm-10">
+          {{ form.review_rating }}
+          {{ form.review_rating.errors }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.review_title.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review title</strong></label>
+        <div class="col-sm-10">
+          {{ form.review_title }}
+          {{ form.review_title.errors }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="{{ form.review_text.id_for_label }}" class="col-sm-2 col-form-label"><strong>Review text</strong></label>
+        <div class="col-sm-10">
+          {{ form.review_text }}
+          {{ form.review_text.errors }}
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-10 offset-sm-2">
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </div>
+      </div>
+    </form>
+
+    <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to Group</a>
+  </div>
 </div>
-
-<form method="post" action="{% url 'reviews:submit_review' group_id=group.group_id movie_id=movie.movie_id %}">
-  {% csrf_token %}
-
-  {{ form.non_field_errors }}
-
-  <div class="form-group">
-    <label for="{{ form.review_rating.id_for_label }}">Rating:</label>
-    {{ form.review_rating }}
-    {{ form.review_rating.errors }}
-  </div>
-
-  <div class="form-group">
-    <label for="{{ form.review_title.id_for_label }}">Title:</label>
-    {{ form.review_title }}
-    {{ form.review_title.errors }}
-  </div>
-
-  <div class="form-group">
-    <label for="{{ form.review_text.id_for_label }}">Review:</label>
-    {{ form.review_text }}
-    {{ form.review_text.errors }}
-  </div>
-
-  <button type="submit">Submit Review</button>
-</form>
-
-<a href="{{ back_url }}">Back to Group</a>
 
 {% endblock %}

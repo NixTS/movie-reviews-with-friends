@@ -11,7 +11,7 @@
         <div class="col-md-3 mb-4">
             <div class="card h-100">
                 <a href="{% url 'movie_details' movie.movie_id %}" class="d-flex flex-column justify-content-between">
-                    <div class="card-body p-0">
+                    <div class="card-body-movies p-0">
                         {% if movie.movie_poster %}
                         <img src="{{ movie.get_poster_url }}" alt="Movie Poster" class="img-fluid rounded-top rounded-10 mb-3">
                         {% endif %}

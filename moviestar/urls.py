@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from homepage.views import index
+from django.conf.urls import handler404
 
 urlpatterns = [
     path('', index, name='index'),
@@ -24,5 +25,7 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('groups/', include('review_groups.urls')),
     path('users/', include('accounts.urls')),
-    path('reviews/', include(('reviews.urls', 'reviews'), namespace='reviews')),  # Updated include statement
+    path('reviews/', include(('reviews.urls', 'reviews'), namespace='reviews')),
 ]
+
+handler404 = 'moviestar.views.handler404'

@@ -13,16 +13,23 @@
     {% if user_groups %}
     <ul class="list-group">
         {% for group in user_groups %}
-            <li class="list-group-item mb-4 border rounded py-4">
-                <a href="{% url 'group_details' group.group_id %}" class="text-decoration-none">
-                    <h3 class="h4 mb-0">{{ group.group_name }}</h3>
-                </a>
-            </li>
+        <li class="list-group-item mb-4 border rounded py-4">
+            <a href="{% url 'group_details' group.group_id %}" class="text-decoration-none">
+                <h3 class="h4 mb-0">{{ group.group_name }}</h3>
+            </a>
+        </li>
         {% endfor %}
     </ul>
     {% endif %}
 
+    <div class="mt-5">
+        <div class="text-center">
+            <h3 class="display-6 my-4">{{ movie_quote.message }}</h2>
+            <p class="text-muted">- {{ movie_quote.source }}</p>
+        </div>
+    </div>
 </div>
 <!-- end homepage -->
+
 
 {% endblock %}

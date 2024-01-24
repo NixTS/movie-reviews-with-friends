@@ -55,6 +55,7 @@ def group_details(request, group_id):
     return render(request, 'review_groups/group_details.html', {'group': group, 'back_url': reverse('list_of_groups')})
 
 
+@login_required
 def create_groups(request):
     """
     Handles the creation of review groups.
@@ -87,6 +88,7 @@ def create_groups(request):
     return render(request, 'review_groups/create_groups.html', {'form': form, 'back_url': reverse('list_of_groups')})
 
 
+@login_required
 def edit_group(request, group_id):
     """
     Handles the editing of review groups.
@@ -124,6 +126,7 @@ def edit_group(request, group_id):
         return render(request, 'review_groups/access_denied.html')
     
 
+@login_required
 def delete_group(request, group_id):
     """
     Handles the deletion of review groups.

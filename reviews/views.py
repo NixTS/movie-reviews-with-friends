@@ -5,6 +5,7 @@ from .models import Review
 from review_groups.models import ReviewGroups
 from movies.models import MovieDetails
 
+@login_required
 def submit_review(request, group_id, movie_id):
     """
     Handles the submission of user reviews for movies within a review group.

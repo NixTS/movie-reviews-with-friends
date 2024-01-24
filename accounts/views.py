@@ -30,6 +30,7 @@ def list_of_users(request):
     return render(request, 'accounts/display_users.html', {'users': users})
 
 
+@login_required
 def user_details(request, id):
     """
     Displays detailed user information.

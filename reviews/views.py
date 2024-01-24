@@ -61,6 +61,23 @@ def get_movie_reviews(group_id, movie_id):
 
 @login_required
 def edit_review(request, group_id, movie_id, review_id):
+    """
+    Handles the user's request to edit a submitted review.
+
+    Retrieves the specified review using its ID and checks if the user is the owner of the review.
+    If the request method is POST, processes the submitted form to update the review.
+    If the form is valid, saves the changes and redirects to the 'movie_review' page for the specified group and movie.
+
+    Parameters:
+        - request: HttpRequest object.
+        - group_id: Integer, ID of the review group associated with the review.
+        - movie_id: Integer, ID of the movie associated with the review.
+        - review_id: Integer, ID of the review to be edited.
+
+    Returns:
+        - If the request method is GET, renders the 'edit_review.html' template with the review form.
+        - If the request method is POST and the form is valid, redirects to the 'movie_review' page.
+    """
     review = get_object_or_404(Review, pk=review_id, review_user=request.user)
 
     if request.method == 'POST':
@@ -73,8 +90,25 @@ def edit_review(request, group_id, movie_id, review_id):
 
     return render(request, 'reviews/edit_review.html', {'form': form, 'review': review})
 
+
 @login_required
 def delete_review(request, group_id, movie_id, review_id):
+    """
+    Handles the user's request to delete a review.
+
+    Retrieves the specified review using its ID and checks if the user is the owner of the review.
+    If the request method is POST, deletes the review and redirects to the 'movie_review' page for the movie.
+
+    Parameters:
+        - request: HttpRequest object.
+        - group_id: Integer, ID of the review group associated with the review.
+        - movie_id: Integer, ID of the movie associated with the review.
+        - review_id: Integer, ID of the review to be deleted.
+
+    Returns:
+        - If the request method is GET, renders the 'delete_review.html' template with information about the review.
+        - If the request method is POST, deletes the review and redirects to the 'movie_review' page.
+    """
     review = get_object_or_404(Review, pk=review_id, review_user=request.user)
 
     if request.method == 'POST':

@@ -4,30 +4,38 @@
 
 {% block content %}
 
+<!-- login -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Login</h1>
 
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        
+
+        <!-- username -->
         <div class="form-group row">
-            <label for="{{ form.username.id_for_label }}" class="col-sm-2 col-form-label"><strong>Username</strong></label>
+            <label for="{{ form.username.id_for_label }}"
+                class="col-sm-2 col-form-label"><strong>Username</strong></label>
             <div class="col-sm-10">
                 {{ form.username }}
                 {{ form.username.errors }}
             </div>
         </div>
+        <!-- end username -->
 
+        <!-- password -->
         <div class="form-group row">
-            <label for="{{ form.password.id_for_label }}" class="col-sm-2 col-form-label"><strong>Password</strong></label>
+            <label for="{{ form.password.id_for_label }}"
+                class="col-sm-2 col-form-label"><strong>Password</strong></label>
             <div class="col-sm-10">
                 {{ form.password }}
                 {{ form.password.errors }}
             </div>
         </div>
+        <!-- end password -->
 
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
 </div>
+<!-- end login -->
 
 {% endblock %}

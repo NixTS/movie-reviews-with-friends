@@ -4,33 +4,38 @@
 
 {% block content %}
 
+<!-- user details -->
 <div class="container mt-4">
     <h1 class="text-left display-4 my-4">{{ user.username }} User Details</h1>
     <div class="row">
         <div class="col-md-8">
-            <ul class="list-unstyled mb-4">
-                <li>
-                    <div class="row">
-                        <div class="col-md-3"><strong>Username:</strong></div>
-                        <div class="col-md-9">{{ user.username }}</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-md-3"><strong>User Bio:</strong></div>
-                        <div class="col-md-9">{{ user.user_bio }}</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="row">
-                        <div class="col-md-3"><strong>Date Joined:</strong></div>
-                        <div class="col-md-9">{{ user.date_joined }}</div>
-                    </div>
-                </li>
-            </ul>
+            <!-- username -->
+            <div class="row">
+                <div class="col-md-3"><strong>Username:</strong></div>
+                <div class="col-md-9">{{ user.username }}</div>
+            </div>
+            <!-- end username -->
+
+            <!-- user bio -->
+
+            <div class="row">
+                <div class="col-md-3"><strong>User Bio:</strong></div>
+                <div class="col-md-9">{{ user.user_bio }}</div>
+            </div>
+            <!-- end user bio -->
+
+            <!-- date joined -->
+
+            <div class="row">
+                <div class="col-md-3"><strong>Date Joined:</strong></div>
+                <div class="col-md-9">{{ user.date_joined }}</div>
+            </div>
+            <!-- end date joined -->
+
         </div>
     </div>
     <a href="{{ back_url }}" class="btn btn-secondary mt-3">Back to all Users</a>
 </div>
+<!-- end user details -->
 
 {% endblock %}

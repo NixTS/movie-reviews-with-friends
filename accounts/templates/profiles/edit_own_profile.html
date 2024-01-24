@@ -4,12 +4,14 @@
 
 {% block content %}
 
+<!-- edit own profile -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Edit Your Profile Information</h1>
 
     <form method="post" action="{% url 'edit_own_profile' %}">
         {% csrf_token %}
 
+        <!-- edit username -->
         <div class="form-group row">
             <label for="{{ form.username.id_for_label }}"
                 class="col-sm-2 col-form-label"><strong>Username</strong></label>
@@ -23,7 +25,9 @@
                 </div>
             </div>
         </div>
+        <!-- end edit username -->
 
+        <!-- edit bio -->
         <div class="form-group row">
             <label for="{{ form.bio.id_for_label }}" class="col-sm-2 col-form-label"><strong>Bio</strong></label>
             <div class="col-sm-10 mb-4">
@@ -31,7 +35,9 @@
                 {{ form.user_bio.errors }}
             </div>
         </div>
+        <!-- end edit bio -->
 
+        <!-- edit email -->
         <div class="form-group row">
             <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label"><strong>Email
                     address</strong></label>
@@ -43,7 +49,9 @@
                 </div>
             </div>
         </div>
+        <!-- end edit email -->
 
+        <!-- edit first name -->
         <div class="form-group row">
             <label for="{{ form.first_name.id_for_label }}" class="col-sm-2 col-form-label"><strong>First
                     Name</strong></label>
@@ -52,7 +60,9 @@
                 {{ form.first_name.errors }}
             </div>
         </div>
+        <!-- end edit first name -->
 
+        <!-- edit last name -->
         <div class="form-group row">
             <label for="{{ form.last_name.id_for_label }}" class="col-sm-2 col-form-label"><strong>Last
                     Name</strong></label>
@@ -61,7 +71,9 @@
                 {{ form.last_name.errors }}
             </div>
         </div>
+        <!-- end edit last name -->
 
+        <!-- edit date of birth -->
         <div class="form-group row">
             <label for="{{ form.date_of_birth.id_for_label }}" class="col-sm-2 col-form-label"><strong>Date of
                     Birth</strong></label>
@@ -70,12 +82,17 @@
                 {{ form.user_date_of_birth.errors }}
             </div>
         </div>
+        <!-- end edit date of birth -->
 
         <button type="submit" class="btn btn-primary">Save Profile</button>
-
     </form>
+
+    <!-- cancle and back to user profile -->
     <a href="{% url 'user_profile' %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- end cancle and back to user profile -->
+
 </div>
+<!-- end edit own profile -->
 
 
 {% endblock %}

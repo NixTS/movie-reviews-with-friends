@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<!-- movie details -->
 <div class="container">
     <h1 class="display-4 text-left my-4">{{ movie.movie_title }}</h1>
     <div class="row">
@@ -56,8 +57,11 @@
     </div>
     {% endif %}
 
+    <!-- back to list of movies button -->
     <a href="{{ back_url }}" class="btn btn-secondary mt-5">Back to Movies List</a>
+    <!-- back to list of movies button -->
 </div>
+<!-- end movie details -->
 
 
 {% endblock %}

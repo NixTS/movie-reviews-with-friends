@@ -4,12 +4,14 @@
 
 {% block content %}
 
+<!-- register an account -->
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">Register</h1>
 
     <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
 
+        <!-- username -->
         <div class="form-group row">
             <label for="{{ form.username.id_for_label }}"
                 class="col-sm-2 col-form-label"><strong>Username</strong></label>
@@ -23,7 +25,9 @@
                 </div>
             </div>
         </div>
+        <!-- end username -->
 
+        <!-- email -->
         <div class="form-group row">
             <label for="{{ form.email.id_for_label }}" class="col-sm-2 col-form-label"><strong>Email
                     address</strong></label>
@@ -35,7 +39,9 @@
                 </div>
             </div>
         </div>
+        <!-- end email -->
 
+        <!-- password -->
         <div class="form-group row">
             <label for="{{ form.password1.id_for_label }}"
                 class="col-sm-2 col-form-label"><strong>Password</strong></label>
@@ -53,6 +59,7 @@
             </div>
         </div>
 
+        <!-- password confirmation -->
         <div class="form-group row">
             <label for="{{ form.password2.id_for_label }}" class="col-sm-2 col-form-label"><strong>Password
                     confirmation</strong></label>
@@ -64,9 +71,12 @@
                 </div>
             </div>
         </div>
+        <!-- end password confirmation -->
+        <!-- end password -->
 
         <button type="submit" class="btn btn-primary">Register</button>
     </form>
 </div>
+<!-- end register an account -->
 
 {% endblock %}

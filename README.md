@@ -9,14 +9,27 @@ Movie Reviews with Friends is a web application built with Django that brings mo
 
 ## **Project Goals**
 
-**Facilitate Community Building**  
+### **User/Visitor Goals**
+
++ **Facilitate Community Building**  
 Enable users to create and join groups based on specific movie subjects, fostering a sense of community among like-minded individuals.
 
-**Curate Movie Catalogs**  
++ **Curate Movie Catalogs**  
 Provide a space within each group for users to add and explore movies related to the group's theme, creating a curated catalog of films.
 
-**Enable Movie Reviews**  
++ **Enable Movie Reviews**  
 Allow users to post reviews for movies within the groups, providing a platform for expressing opinions.
+
+### **Site Owner Goals**
+
++ **Community Growth**  
+Increase the number of registered users and groups on the platform.
+
++ **Content Curation**  
+Promote the creation of high-quality content within groups, ensuring that the movie catalogs and discussions offer value to the community.
+
++ **Positive User Experience**  
+Prioritize a positive and user-friendly experience, making the platform enjoyable and accessible for users of varying levels of technical expertise.
 
 By achieving these goals, the Movie Reviews with Friends website aims to become a go-to platform for movie enthusiasts to connect, discuss, and share their passion for cinema within a vibrant and supportive community.
 

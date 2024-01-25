@@ -64,34 +64,61 @@ The
 
 ## **Structure**
 
-### **Navigation**
+**Navigation**  
+A fully responsive navigation bar positioned at the top of the page displaying essential site functionalities throughout the whole website.
 
-+ 
-
-**Homepage Screen**
 ![]()
 
-**Register & Login**
+**Home/Index**  
+The Movie Reviews with Friends home page serves as a warm welcome to users, tailored to their login status.  
+
+Not-logged-in-users are presented with a welcome message and encouregement to explore the website and register for an account.
+
 ![]()
 
-**Movies**
+Logged in users are greeted by their username and groups they are apart of.
+
 ![]()
 
-**Movie Details**
+**Register & Login**  
+Account registration is designed for simplicity. Users only need to provide a unique username, an email address, and a password with confirmation. This straightforward process allows users to explore the website's features promptly. Note that email confirmation is not required, providing users with immediate access upon registration.
+
 ![]()
 
-**Groups**
+**Movies**  
+The Movies page is intentionally streamlined, showcasing only essential information: the movie poster and title. This design prioritizes a efficient scrolling experience, ensuring users can navigate without the distraction of information overload.
+
 ![]()
 
-**Group details**
+**Movie Details**  
+In the Movie Details section, users can get more comprehensive informations about movies, including a movie description, genres, release date, and runtime. For logged-in users, a feature allowing them to add the movie to any groups they are part of, enhancing their engagement with the Movie Reviews with Friends community.
+
 ![]()
 
-**Reviews**
+**Groups**  
+The Groups page provides an overview of all currently available groups.
+
 ![]()
 
-**Users**
+**Group details**  
+The Group Details page presents users with valuable insights, including the group description, the curated collection of movies added by the group, and a comprehensive list of both the group admin and members. Additionally, for users not yet part of the group, a prominent "Join Group" button is provided. Conversely, for those already part of the group, a convenient "Leave Group" option is available.
+
 ![]()
 
+**Reviews**  
+Upon selecting a movie within a group, the Reviews page unfolds, showcasing user-generated reviews. Users can express their thoughts through written reviews, accompanied by the option to assign a numerical rating from 1 to 10. This interactive feature empowers users to share their insights and opinions.
+
+![]()
+
+**Users**  
+The Users page, fashioned similarly to the Groups list, provides a comprehensive roster of all currently registered users on the website.
+
+![]()
+
+**User details**
+The User Details page provides a personalized glimpse into each user's interests, featuring their username, a self-written bio, and the date they joined the community. 
+
+![]()
 
 ## **Features**
 

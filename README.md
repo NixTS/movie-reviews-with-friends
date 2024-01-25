@@ -1,39 +1,205 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# **Movie Reviews with Friends**
 
-Welcome,
+Live Website: [](https://)
 
-This is the Code Institute student template for Codeanywhere. If you are using Gitpod then you need [this template](https://github.com/Code-Institute-Org/gitpod-full-template) instead.  We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+***
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **August 30th, 2023**
+## **Project Goals**
 
-## Codeanywhere Reminders
+***
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere, in the terminal, type:
+## **User Stories**
 
-`python3 -m http.server`
+### **First Time Users Goals**
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
++ As a 
++ As a 
++ As a 
 
-To run a frontend (HTML, CSS, Javascript only) application in Codeanywhere with no-cache, you can use this alias for `python3 -m http.server`.
+### **Frequent User Goals**
 
-`http_server`
++ As a 
++ As a 
++ As a 
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### **All User goals**
 
-A button should appear to click: _Open Preview_ or _Open Browser_.
++ As a 
++ As a 
++ As a 
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+### **Fulfillment**
 
-To log into the Heroku toolbelt CLI:
+The 
+> As a
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+***
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+## **Structure**
 
----
+### **Navigation**
 
-Happy coding!
++ 
+
+**Homepage Screen**
+![]()
+
+**Register & Login**
+![]()
+
+**Movies**
+![]()
+
+**Movie Details**
+![]()
+
+**Groups**
+![]()
+
+**Group details**
+![]()
+
+**Reviews**
+![]()
+
+**Users**
+![]()
+
+
+## **Features**
+
+### **Existing Features**
+
+**Movies**
++ 
+
+**Groups**
++ 
+
+**Users**
++ 
+
+**Database**
++ 
+
+### **Features left to implement**
+
++ 
+> 
+
+***
+
+## **Technologies**
+
+### **Language**
+
++ [Python](https://www.python.org/)
+    - Main programming language used in this project
+
+### **Packages**
+
++ []()
+    - 
+
+### **Tools**
+
++ []()
+    - 
+
+***
+
+## **Testing**
+
++ 
+
+### **Authentication**
+
++ 
+
+### **Other Tests**
+
++
+
+### **Unresolved Errors, Issues and Bugs**
+
++
+
+## **Deployment**
+
+### **Project Creation**
+
+The project was started by navigating to the [template provided]() and clicking 'Use this template'. Under Repository name I input _________ and checked the 'Include all branches' checkbox. I then navigated to the new [repository](). I then clicked the Open with GitHub Desktop button.
+
+After GitHub Desktop opened this repository, i then clicked "Open in Visual Studio Code"
+
+Opening [Visual Studio Code](https://code.visualstudio.com/). The following commands were used throughout the project:
+
++ git add filename - This command was used to add files to the staging area before committing.
++ git commit -m *commit message explaining the updates* - This command was used to commit changes to the local repository.
++ git reset HEAD^ - This command was used to delete the last commit but keep all the changes.
++ git push - This command is used to push all committed changes to the GitHub repository.
+
+### **Run Locally**
+
+1. Navigate to the file to be run in Visual Studio Code
+2. 
+
+To stop the :
++ "Ctrl + C" - To stop 
+
+### **Deployment to Live Service**
+
+1. Get ________ ready for deployment
+
+> Ensure the ___________ is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
+
+> pip3 freeze > requirements.txt
+
+2. Pushing GitHub
+
+> Make a commit and push the current version of the program to GitHub.
+
+> git commit -m "..."  
+> git push
+
+3. Heroku starting a new project
+
+> Visit the [Heroku](https://dashboard.heroku.com/) dashboard and click "New App" after that, give the project a name and select a region, next.
+
+4. Heroku project settings
+
+> In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields. In the first field "KEYS" insert "___________". The second field "VALUE" copy and paste the contents of ___________ file. This file is not accessible to the public and must be kept secret.
+
+5. Heroku Buildpacks
+
+> Head to "Buildpacks" section and click "Add Buildpack". In the newly opened window, select "Python" then "Add Buildpack". Repeat this step and add "Nodejs" next.
+
+6. Connecting to GitHub
+
+> Click the "Deploy" tab and select "GitHub" and then "Connect to Github".
+
+7. Selecting the Project
+
+> After successfully connecting to GitHub a search bar opens. Type the name of the repository your project is in. A dropdown menu will open, click on the correct repository. This links up the repository from GitHub to heroku.
+
+8. Deployment
+
+> Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finish, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
+
+***
+
+## **Credits**
+
+### **Project Idea**
+
+The inspiration for this project 
+
+### **Content**
+
+The content of this tool was created by [NixTS](https://github.com/NixTS/).
+
+The __________ provided was made with the knowledge gained through the CodeInstitute Full Stack Developer course.
+
+### **Acknowledgements**
+
+I'd like to thank my mentor [Daisy McGirr](https://github.com/Dee-McG) for her guidance throughout my project.

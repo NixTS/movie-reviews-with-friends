@@ -147,19 +147,107 @@ The User Details page provides a personalized glimpse into each user's interests
 
 ### **Language**
 
-+ [Python](https://www.python.org/)
-    - Main programming language used in this project
+- [Python](https://www.python.org/)
+    - Backend development using Django.
 
-### **Packages**
+### **Front-end**
 
-+ []()
-    - 
+- [Bootstrap](https://getbootstrap.com/)
+    - Front-end framework for responsive design and styling.
+
+- [HTML/CSS](https://developer.mozilla.org/en-US/docs/Web/HTML)
+    - Structure and styling of the website.
+
+### **Database**
+
+- [ElephantSQL](https://www.elephantsql.com/)
+    - PostgreSQL as a Service. Cloud database hosting service for PostgreSQL databases.
+
+### **Hosting & Deployment**
+
+- [Heroku](https://www.heroku.com/)
+    - Cloud platform for hosting and deploying web applications.
 
 ### **Tools**
 
-+ []()
-    - 
+- [Django](https://www.djangoproject.com/)
+    - Python web framework for building the application.
 
+### **Packages**
+
+- [asgiref](https://pypi.org/project/asgiref/) (3.7.2)
+    - ASGI (Asynchronous Server Gateway Interface) reference implementation for Django.
+
+- [certifi](https://pypi.org/project/certifi/) (2023.11.17)
+    - A collection of Mozilla's CA certificates for certificate authorities.
+
+- [cffi](https://pypi.org/project/cffi/) (1.16.0)
+    - Foreign Function Interface for calling C functions from Python.
+
+- [charset-normalizer](https://pypi.org/project/charset-normalizer/) (3.3.2)
+    - Library for normalizing and converting between different character sets.
+
+- [cryptography](https://pypi.org/project/cryptography/) (41.0.7)
+    - Library for secure communication and cryptography protocols.
+
+- [defusedxml](https://pypi.org/project/defusedxml/) (0.7.1)
+    - XML parsing library that protects against various XML vulnerabilities.
+
+- [dj-database-url](https://pypi.org/project/dj-database-url/) (0.5.0)
+    - Django utility for parsing database URLs.
+
+- [Django](https://www.djangoproject.com/) (4.2.1)
+    - The Django web framework for building robust and scalable web applications.
+
+- [django-allauth](https://pypi.org/project/django-allauth/) (0.57.0)
+    - Django package for handling authentication, registration and account management.
+
+- [gunicorn](https://pypi.org/project/gunicorn/) (20.1.0)
+    - WSGI HTTP server for running Django applications in production.
+
+- [idna](https://pypi.org/project/idna/) (3.6)
+    - Library for handling Internationalized Domain Names in Applications (IDNA).
+
+- [oauthlib](https://pypi.org/project/oauthlib/) (3.2.2)
+    - Generic implementation of the OAuth 1.0 and OAuth 2.0 authorization protocols.
+
+- [psycopg2](https://pypi.org/project/psycopg2/) (2.9.9)
+    - PostgreSQL adapter for Python, allowing Django to interact with PostgreSQL databases.
+
+- [pycparser](https://pypi.org/project/pycparser/) (2.21)
+    - Parser for the C language written in Python.
+
+- [PyJWT](https://pypi.org/project/PyJWT/) (2.8.0)
+    - JSON Web Token implementation in Python.
+
+- [python3-openid](https://pypi.org/project/python3-openid/) (3.2.0)
+    - Set of Python packages for working with OpenID.
+
+- [requests](https://pypi.org/project/requests/) (2.31.0)
+    - HTTP library for making requests in Python.
+
+- [requests-oauthlib](https://pypi.org/project/requests-oauthlib/) (1.3.1)
+    - OAuthlib support for Python Requests.
+
+- [setuptools](https://pypi.org/project/setuptools/) (69.0.3)
+    - Package for installing Python projects, including package management.
+
+- [sqlparse](https://pypi.org/project/sqlparse/) (0.4.4)
+    - Non-validating SQL parser for Python, for formatting and analyzing SQL queries.
+
+- [tzdata](https://pypi.org/project/tzdata/) (2023.4)
+    - Time zone database for Python.
+
+- [urllib3](https://pypi.org/project/urllib3/) (2.1.0)
+    - HTTP client for Python.
+
+- [whitenoise](https://pypi.org/project/whitenoise/) (5.3.0)
+    - Middleware for serving static files directly through Django, for production use.
+
+### **APIs Used**
+
+- [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api)
+    - Integration of TMDb API for fetching movie-related data, including posters, titles, and additional information.
 ***
 
 ## **Testing**

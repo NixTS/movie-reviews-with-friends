@@ -1,12 +1,26 @@
 # **Movie Reviews with Friends**
 
-Live Website: [](https://)
+Live Website: [Movie Reviews with Friends](https://movie-reviews-with-friends-96186426856b.herokuapp.com/)
 
-***
+
+## **Purpose**
+
+Movie Reviews with Friends is a web application built with Django that brings movie enthusiasts together to discuss and review their favorite films. The platform allows users to create or join groups centered around specific movie subjects, fostering a community where members can share their passion for cinema.
 
 ## **Project Goals**
 
-***
+**Facilitate Community Building**  
+Enable users to create and join groups based on specific movie subjects, fostering a sense of community among like-minded individuals.
+
+**Curate Movie Catalogs**  
+Provide a space within each group for users to add and explore movies related to the group's theme, creating a curated catalog of films.
+
+**Enable Movie Reviews**  
+Allow users to post reviews for movies within the groups, providing a platform for expressing opinions.
+
+By achieving these goals, the Movie Reviews with Friends website aims to become a go-to platform for movie enthusiasts to connect, discuss, and share their passion for cinema within a vibrant and supportive community.
+
+
 
 ## **User Stories**
 

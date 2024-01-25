@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Not Logged in Homepage{% endblock %}
+
+{% block content %}
+
+<!-- not logged in homepage -->
+<div class="container mt-4">
+    <h1 class="text-left display-4 my-4">Greetings, fellow movie enthusiast!</h1>
+
+    <h2 class="text-left display-6 mb-4">You've found the perfect spot if movies are your cup of tea.</h2>
+
+    <p class="text-left mb-4">Explore our website. If you like what you see and desire all the features, join us!</p>
+
+    <p class="text-left mb-4">
+        <a href="{% url 'register' %}" class="btn btn-primary">Register for an account right here</a>
+    </p>
+
+    <p class="text-left mb-4">Already have an account?</p>
+
+    <p class="text-left mb-4">
+        <a href="{% url 'login' %}" class="btn btn-secondary">Login here</a>
+    </p>
+</div>
+<!-- end not logged in homepage -->
+
+
+{% endblock %}

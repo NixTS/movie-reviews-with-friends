@@ -43,12 +43,11 @@ def movie_quote(request):
     return selected_message, source
 
 
-@login_required
 def homepage(request):
     """
     Renders the homepage with user-specific content.
 
-    If the user is not logged in, redirects to the login page.
+    If the user is not logged in, displays a different template.
     Retrieves the user's username and groups.
     Passes the data to the 'homepage.html' template for rendering.
 
@@ -56,16 +55,18 @@ def homepage(request):
         - request: HttpRequest object.
 
     Returns:
-        - Rendered HTML page for the homepage or a redirect to the login page.
+        - Rendered HTML page for the homepage or a different template for not logged-in users.
     """
-    user_groups = ReviewGroups.objects.filter(group_members=request.user)
+    if request.user.is_authenticated:
+        user_groups = ReviewGroups.objects.filter(group_members=request.user)
+        selected_message, source = movie_quote(request)
 
-    selected_message, source = movie_quote(request)
+        context = {
+            'username': request.user.username,
+            'user_groups': user_groups,
+            'movie_quote': {'message': selected_message, 'source': source},
+        }
 
-    context = {
-        'username': request.user.username,
-        'user_groups': user_groups,
-        'movie_quote': {'message': selected_message, 'source': source},
-    }
-
-    return render(request, 'homepage/homepage.html', context)
+        return render(request, 'homepage/homepage.html', context)
+    else:
+        return render(request, 'homepage/not_logged_in_homepage.html')

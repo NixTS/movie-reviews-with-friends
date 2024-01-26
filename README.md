@@ -254,16 +254,24 @@ The User Details page provides a personalized glimpse into each user's interests
 
 ### Manual Tests
 
-**W3 HTML Checker**
-
-- **Test Case 4: HTML Validation**
-  - Validate HTML code using the W3 HTML Checker.
+#### **HTML Validation**
+  + *Description*: Validate HTML code using the W3 HTML Checker.
+  + *Steps*:
     1. Copy the HTML code of the templates.
     2. Visit the [W3 HTML Checker](https://validator.w3.org/).
     3. Paste the HTML code and check for any validation errors.
-  - No validation errors found in the core structure and syntax of HTML.
+    4. Fix any warnings or errors.
+  + *Expected Result*: No validation errors found in the core structure and syntax of HTML.
 
     **Note**: Due to the dynamic nature of Django templates and the usage of template tags, some errors related to undefined variables or attributes may be expected.
+
+#### **Python Linter**
+  + *Description*: Ensure Python code adheres to coding standards using a linter (CI Python Linter).
+  + *Steps*:
+    1. Run the linter on each Python code file.
+    2. Review the output for any warnings or errors.
+    3. Fix any warnings or errors.
+  + *Expected Result*: The code complys with coding standards without any major issues.
 
 ### **Other Tests**
 

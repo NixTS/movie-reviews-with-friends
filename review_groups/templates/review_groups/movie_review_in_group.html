@@ -20,26 +20,26 @@
 
     <div class="col-md-8">
       <p class="lead mb-3">{{ movie.movie_description }}</p>
-      <ul class="list-unstyled mb-4">
-        <li>
+      <div class="list-unstyled mb-4">
+        <div>
           <div class="row">
             <div class="col-md-3"><strong>Genre</strong></div>
             <div class="col-md-9">{{ movie.movie_genre|join:", " }}</div>
           </div>
-        </li>
-        <li>
+        </div>
+        <div>
           <div class="row">
             <div class="col-md-3"><strong>Release Date</strong></div>
             <div class="col-md-9">{{ movie.movie_release_date }}</div>
           </div>
-        </li>
-        <li>
+        </div>
+        <div>
           <div class="row">
             <div class="col-md-3"><strong>Runtime</strong></div>
             <div class="col-md-9">{{ movie.movie_length }}</div>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   </div>
   <!-- end display movie to review -->

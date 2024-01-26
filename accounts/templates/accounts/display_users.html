@@ -8,15 +8,15 @@
 <div class="container mt-4">
     <h1 class="text-left display-4 mb-4">List of Users</h1>
     {% if users %}
-    <ul class="list-group">
+    <div class="list-group">
         {% for user in users %}
-        <li class="list-group-item mb-4 border rounded py-4">
+        <div class="list-group-item mb-4 border rounded py-4">
             <a href="{% url 'user_details' user.id %}" class="text-decoration-none">
                 <h2 class="h4 mb-0">{{ user.username }}</h2>
             </a>
-        </li>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     {% endif %}
 </div>
 <!-- end list of users -->

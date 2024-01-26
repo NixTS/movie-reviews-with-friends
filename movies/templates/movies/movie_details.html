@@ -45,7 +45,7 @@
             {% csrf_token %}
             <div class="form-group mb-3">
                 <label for="group_id"></label>
-                <select class="form-control my-4" name="group_id" id="group_id" placeholder="Select a group">
+                <select class="form-control my-4" name="group_id" id="group_id">
                     <option value="" disabled selected>Select a group</option>
                     {% for group in user.user_groups_membership.all %}
                     <option value="{{ group.group_id }}">{{ group.group_name }}</option>

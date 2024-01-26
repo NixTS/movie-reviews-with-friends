@@ -11,15 +11,15 @@
     <h2 class="text-left display-6 mb-4">Your Groups:</h2>
 
     {% if user_groups %}
-    <ul class="list-group">
+    <div class="list-group">
         {% for group in user_groups %}
-        <li class="list-group-item mb-4 border rounded py-4">
+        <div class="list-group-item mb-4 border rounded py-4">
             <a href="{% url 'group_details' group.group_id %}" class="text-decoration-none">
                 <h3 class="h4 mb-0">{{ group.group_name }}</h3>
             </a>
-        </li>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
     {% endif %}
 
     <div class="mt-5">

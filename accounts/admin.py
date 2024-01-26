@@ -1,8 +1,8 @@
 """
 Admin module for managing custom user models in the Django admin interface.
 
-This module extends the default UserAdmin provided by Django to include additional
-fields such as date of birth and a biography.
+This module extends the default UserAdmin provided by Django
+to include additional fields such as date of birth and a biography.
 
 Attributes:
     - list_display (tuple): Fields displayed in the list view.
@@ -23,7 +23,7 @@ class CustomUserAdmin(UserAdmin):
     list_display = (
         'username', 'email', 'first_name', 'last_name', 'is_staff'
         )
-    
+
     fieldsets = (
         (None, {
             'fields': ('username', 'password')

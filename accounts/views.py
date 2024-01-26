@@ -15,7 +15,8 @@ def list_of_users(request):
     Renders the list on the 'accounts/display_users.html' template.
 
     Note:
-        - This function utilizes the CustomUser model, which is a custom extension of the default Django User model.
+        - This function utilizes the CustomUser model,
+        which is a custom extension of the default Django User model.
 
     Parameters:
         - request: HttpRequest object.
@@ -24,8 +25,6 @@ def list_of_users(request):
         - Rendered HTML page with a list of all users.
     """
     users = CustomUser.objects.all()
-    for user in users:
-        print(f"User ID: {id}, Username: {user.username} User Bio: {user.user_bio}")
 
     return render(request, 'accounts/display_users.html', {'users': users})
 
@@ -47,7 +46,11 @@ def user_details(request, id):
         - Rendered HTML page with detailed user information.
     """
     user = get_object_or_404(CustomUser, id=id)
-    return render(request, 'accounts/user_details.html', {'user': user, 'back_url': reverse('list_of_users')})
+    return render(
+        request,
+        'accounts/user_details.html',
+        {'user': user, 'back_url': reverse('list_of_users')}
+    )
 
 
 def register(request):
@@ -55,7 +58,8 @@ def register(request):
     View for user registration.
 
     Handles both GET and POST requests. If the request is a POST request,
-    it validates the registration form. If the form is valid, it creates a new user,
+    it validates the registration form.
+    If the form is valid, it creates a new user,
     logs in the user, and redirects to the movies page. If the request is a GET
     request, displays the registration form.
 
@@ -64,9 +68,9 @@ def register(request):
 
     Returns:
         - If the request is a POST request and the form is valid:
-            Redirects to the movies page after creating and logging in the user.
+        Redirects to the movies page after creating and logging in the user.
         - If the request is a GET request or the form is invalid:
-            Renders the registration form page with the form.
+        Renders the registration form page with the form.
     """
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -86,7 +90,8 @@ def edit_own_profile(request):
     Displays and allows the logged-in user to update their user profile.
 
     Handles the GET request to display the user profile form.
-    Handles the POST request to update the user profile when the form is submitted.
+    Handles the POST request to update the user profile
+    when the form is submitted.
 
     Template: 'accounts/edit_own_profile.html'
     """

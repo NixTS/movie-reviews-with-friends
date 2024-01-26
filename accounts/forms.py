@@ -22,4 +22,11 @@ class RegistrationForm(UserCreationForm):
 class UserProfileEditForm(forms.ModelForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'first_name', 'last_name', 'email', 'user_date_of_birth', 'user_bio']
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'user_date_of_birth',
+            'user_bio'
+            ]

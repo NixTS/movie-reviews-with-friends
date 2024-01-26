@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
 class CustomUser(AbstractUser):
     """
     Extension for the default user model.
@@ -10,10 +11,12 @@ class CustomUser(AbstractUser):
         - user_bio (TextField): User's bio or additional information.
 
     Methods:
-        - __str__(): Returns the username as the string representation of the user.
+        - __str__(): Returns the username as the string
+          representation of the user.
 
     Usage:
-        - This model extends the default user model provided by Django to include
+        - This model extends the default user model
+        provided by Django to include
         additional fields such as date of birth and a bio.
     """
     user_date_of_birth = models.DateField(null=True, blank=True)

@@ -270,63 +270,76 @@ The User Details page provides a personalized glimpse into each user's interests
 
 ### **Project Creation**
 
-The project was started by navigating to the [template provided]() and clicking 'Use this template'. Under Repository name I input _________ and checked the 'Include all branches' checkbox. I then navigated to the new [repository](). I then clicked the Open with GitHub Desktop button.
+The project was started by navigating to the [template provided](https://github.com/Code-Institute-Org/ci-full-template) and clicking 'Use this template'. Under Repository name I input "movie-reviews-with-friends" and checked the 'Include all branches' checkbox. I then navigated to the new [repository](https://github.com/NixTS/movie-reviews-with-friends). I then clicked the Open with GitHub Desktop button.
 
-After GitHub Desktop opened this repository, i then clicked "Open in Visual Studio Code"
+After GitHub Desktop opened this repository, i cloned the repository to a directory on my PC and clicked "Open in Visual Studio Code"
 
 Opening [Visual Studio Code](https://code.visualstudio.com/). The following commands were used throughout the project:
 
 + git add filename - This command was used to add files to the staging area before committing.
-+ git commit -m *commit message explaining the updates* - This command was used to commit changes to the local repository.
++ git commit -m *"commit message explaining the updates"* - This command was used to commit changes to the local repository.
 + git reset HEAD^ - This command was used to delete the last commit but keep all the changes.
 + git push - This command is used to push all committed changes to the GitHub repository.
 
 ### **Run Locally**
 
-1. Navigate to the file to be run in Visual Studio Code
-2. 
+To launch the Django application locally, follow these steps:
+1. Open the terminal in Visual Studio Code.
+2. Enter the command: "python manage.py runserver" without the quotes.
+2. Copy the URL displayed next to "Starting development server at" (e.g., http://127.0.0.1:8000).
+3. Paste the copied URL into your browser's address bar.
+4. The browser will then render the provided templates, showcasing the app.
 
-To stop the :
-+ "Ctrl + C" - To stop 
+To halt the Django development server, follow these steps:
+1. Click on the terminal running the development server.
+2. Press "Ctrl + C" to stop the server.
 
 ### **Deployment to Live Service**
 
-1. Get ________ ready for deployment
+1. Get the project ready for deployment
 
-> Ensure the ___________ is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
+    + Ensure the project is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
 
-> pip3 freeze > requirements.txt
+    + pip3 freeze > requirements.txt
+
+    + In the settings, set "Debug" to "False" and save the file.
 
 2. Pushing GitHub
 
-> Make a commit and push the current version of the program to GitHub.
+    + Make a commit and push the current version of the program to GitHub.
 
-> git commit -m "..."  
-> git push
+    + git commit -m "..."  
+    + git push
 
-3. Heroku starting a new project
+3. Set Up ElephantSQL (PostgreSQL)
 
-> Visit the [Heroku](https://dashboard.heroku.com/) dashboard and click "New App" after that, give the project a name and select a region, next.
+   + Visit [ElephantSQL](https://www.elephantsql.com/) and create a new PostgreSQL instance.
+   + Obtain the database URL provided by ElephantSQL.
 
-4. Heroku project settings
+4. Heroku starting a new project
 
-> In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields. In the first field "KEYS" insert "___________". The second field "VALUE" copy and paste the contents of ___________ file. This file is not accessible to the public and must be kept secret.
+    + Visit the [Heroku](https://dashboard.heroku.com/) dashboard and click "New App" after that, give the project a name and select a region, next.
 
-5. Heroku Buildpacks
+5. Heroku project settings
 
-> Head to "Buildpacks" section and click "Add Buildpack". In the newly opened window, select "Python" then "Add Buildpack". Repeat this step and add "Nodejs" next.
+    + In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields.
+    + Put in the following:
+        + DATABASE_URL - *postgres://your-database-link"
+        + DISABLE_COLLECTSTATIC - *1*
+        + SECRET_KEY - *you-secret-key from the env.py file*
+        + TMDB_API_KEY - *The Movie Database api key from the env.py file*
 
 6. Connecting to GitHub
 
-> Click the "Deploy" tab and select "GitHub" and then "Connect to Github".
+    + Click the "Deploy" tab and select "GitHub" and then "Connect to Github".
 
 7. Selecting the Project
 
-> After successfully connecting to GitHub a search bar opens. Type the name of the repository your project is in. A dropdown menu will open, click on the correct repository. This links up the repository from GitHub to heroku.
+    + After successfully connecting to GitHub a search bar opens. Type the name of the repository your project is in. A dropdown menu will open, click on the correct repository. This links up the repository from GitHub to heroku.
 
 8. Deployment
 
-> Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finish, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
+    + Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finish, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
 
 ***
 

@@ -1,6 +1,7 @@
 from django import forms
 from .models import Review
 
+
 class ReviewForm(forms.ModelForm):
     """
     Form for capturing user reviews of movies within a review group.

@@ -273,9 +273,77 @@ The User Details page provides a personalized glimpse into each user's interests
     3. Fix any warnings or errors.
   + *Expected Result*: The code complys with coding standards without any major issues.
 
-### **Other Tests**
+### **Automated Tests**
 
-+
+#### **Registration**
+The registration process is tested to ensure that users can successfully register with the required information and that proper validation checks are in place.
+
+**Requirements**
++ **Username**
+    + Required.
+    + Must be unique, will be checked back with the database.
+    + Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+
++ **E-Mail Adress**
+    + Required.
+    + Valid E-Mail Address format.
+
++ **Password**
+    + Required.
+    + Password can’t be too similar to your other personal information.
+    + Password must contain at least 8 characters.
+    + Password can’t be a commonly used password.
+    + Password can’t be entirely numeric.
+
++ **Password Confirmation**
+    + Required.
+    + Password confirmation must match passsword entered beforehand.
+
+
+**Test Case 1: Valid Registration**
++ **Scenario:** User provides valid registration details.
++ **Steps:**
+  1. Navigate to the registration page.
+  2. Enter a unique username.
+  3. Provide a valid email address (no email confirmation required).
+  4. Enter a strong password.
+  5. Confirm the password.
+  6. Click the "Register" button.
++ **Expected Result:** User is successfully registered and redirected to the login page.
+
+**Test Case 2: Missing Username**
++ **Scenario:** User attempts registration without providing a username.
++ **Steps:**
+  1. Navigate to the registration page.
+  2. Leave the username field empty.
+  3. Provide a valid email address.
+  4. Enter a strong password.
+  5. Confirm the password.
+  6. Click the "Register" button.
++ **Expected Result:** User receives an error message indicating that a username is required.
+
+**Test Case 3: Password Mismatch**
++ **Scenario:** User provides mismatched passwords during registration.
++ **Steps:**
+  1. Navigate to the registration page.
+  2. Enter a unique username.
+  3. Provide a valid email address.
+  4. Enter a strong password.
+  5. Confirm the password with a different value.
+  6. Click the "Register" button.
++ **Expected Result:** User receives an error message indicating that passwords do not match.
+
+**Test Case 4: Invalid Email Address**
++ **Scenario:** User provides an invalid email address during registration.
++ **Steps:**
+  1. Navigate to the registration page.
+  2. Enter a unique username.
+  3. Provide an invalid email address (e.g., user@example).
+  4. Enter a strong password.
+  5. Confirm the password.
+  6. Click the "Register" button.
++ **Expected Result:** User receives an error message indicating that the provided email address is not valid.
+
 
 ### **Unresolved Errors, Issues and Bugs**
 

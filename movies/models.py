@@ -21,20 +21,25 @@ class MovieDetails(models.Model):
         - The 'movie_poster' field is stored as a URL to save storage space.
 
     Usage:
-        - This model is intended to be used for storing and retrieving movie information
+        - This model is intended to be used for
+          storing and retrieving movie information
         obtained from The Movie Database (TMDB) API.
     """
     movie_id = models.AutoField(primary_key=True)
     movie_title = models.CharField(max_length=255, blank=True, null=True)
     movie_poster = models.CharField(max_length=255, blank=True, null=True)
-    
+
     def get_poster_url(self):
         if self.movie_poster:
             base_url = 'https://image.tmdb.org/t/p/w300'
             return f'{base_url}{self.movie_poster}'
         return None
 
-    movie_description = models.TextField(max_length=10000, blank=True, null=True)
+    movie_description = models.TextField(
+        max_length=10000,
+        blank=True,
+        null=True
+    )
     movie_genre = models.JSONField(blank=True, null=True)
     movie_release_date = models.DateField(blank=True, null=True)
     movie_duration = models.DurationField(blank=True, null=True)

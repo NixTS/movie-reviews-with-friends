@@ -26,8 +26,6 @@ def list_of_groups(request):
         - 'review_groups/display_groups.html'
     """
     groups = ReviewGroups.objects.all()
-    for group in groups:
-        print(f"Group ID: {group.group_id}, Group Name: {group.group_name}")
 
     return render(
         request,

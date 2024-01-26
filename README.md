@@ -252,11 +252,18 @@ The User Details page provides a personalized glimpse into each user's interests
 
 ## **Testing**
 
-+ 
+### Manual Tests
 
-### **Authentication**
+**W3 HTML Checker**
 
-+ 
+- **Test Case 4: HTML Validation**
+  - Validate HTML code using the W3 HTML Checker.
+    1. Copy the HTML code of the templates.
+    2. Visit the [W3 HTML Checker](https://validator.w3.org/).
+    3. Paste the HTML code and check for any validation errors.
+  - No validation errors found in the core structure and syntax of HTML.
+
+    **Note**: Due to the dynamic nature of Django templates and the usage of template tags, some errors related to undefined variables or attributes may be expected.
 
 ### **Other Tests**
 

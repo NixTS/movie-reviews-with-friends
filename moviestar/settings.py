@@ -34,7 +34,9 @@ TMDB_API_KEY = os.environ.get("TMDB_API_KEY")
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-CSRF_TRUSTED_ORIGINS = ['https://movie-reviews-with-friends-96186426856b.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://movie-reviews-with-friends-96186426856b.herokuapp.com'
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -59,7 +61,8 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-# Ensure a secure login URL redirection for users attempting to access functions that require authentication but are not logged in.
+# Ensure a secure login URL redirection for users attempting to
+# access functions that require authentication but are not logged in.
 LOGIN_URL = 'login'
 
 MIDDLEWARE = [
@@ -103,16 +106,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'MinimumLengthValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'CommonPasswordValidator'
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+                'NumericPasswordValidator'
     },
 ]
 

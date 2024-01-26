@@ -24,7 +24,9 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('groups/', include('review_groups.urls')),
     path('users/', include('accounts.urls')),
-    path('reviews/', include(('reviews.urls', 'reviews'), namespace='reviews')),
-]
+    path(
+        'reviews/',
+        include(('reviews.urls', 'reviews'), namespace='reviews')
+    ), ]
 
 handler404 = 'moviestar.views.handler404'

@@ -362,13 +362,17 @@ To halt the Django development server, follow these steps:
 
 ### **Project Idea**
 
-The inspiration for this project 
+The inspiration behind this project originates from my deep passion for movies and the joy I find in sharing my views and thoughts about cinema. As a cinema enthusiast, discussing and exploring movies is not just a hobby but a source of immense delight in my daily life. The challenge of discovering new and exciting films further fueled my idea to create a website.
+
+The concept revolves around users forming groups centered on specific movie themes, facilitating collaborative reviews and discussions. By creating an interactive platform where like-minded individuals share their opinions, the website aims to serve as a valuable resource for discovering new movies that align with personal interests and preferences.
 
 ### **Content**
 
-The content of this tool was created by [NixTS](https://github.com/NixTS/).
+The content of this website was created by [NixTS](https://github.com/NixTS/).
 
-The __________ provided was made with the knowledge gained through the CodeInstitute Full Stack Developer course.
+The Movie Reviews with Friends website utilizes The Movie Database [TMDB API](https://developer.themoviedb.org/docs/getting-started) for content, and all rights to the data belong to TMDB. This project is not intended for commercial use, and the usage of [TMDB](https://www.themoviedb.org/) data is in compliance with [TMDB's API terms of use](https://www.themoviedb.org/api-terms-of-use) and [TMDB's terms of use](https://www.themoviedb.org/terms-of-use).
+
+The Python code provided was made with the knowledge gained through the CodeInstitute Full Stack Developer course.
 
 ### **Acknowledgements**
 

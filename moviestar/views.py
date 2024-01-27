@@ -40,3 +40,7 @@ def handler404(request, exception):
 
     context = {'message': random.choice(messages)}
     return render(request, '404.html', context, status=404)
+
+
+def access_denied(request):
+    return render(request, 'access_denied.html')

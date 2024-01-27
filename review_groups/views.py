@@ -150,7 +150,7 @@ def edit_group(request, group_id):
             {'form': form, 'group': group}
         )
     else:
-        return render(request, 'review_groups/access_denied.html')
+        return redirect('access_denied')
 
 
 @login_required

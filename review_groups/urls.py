@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
+from moviestar.views import access_denied
 from review_groups.views import (
     list_of_groups,
     group_details,
@@ -46,4 +47,9 @@ urlpatterns = [
         login_required(join_leave_group),
         name='join_leave_group'
     ),
+    path(
+        'access_denied/',
+        access_denied,
+        name='access_denied'
+    )
 ]

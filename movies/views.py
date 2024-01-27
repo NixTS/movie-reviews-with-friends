@@ -2,6 +2,7 @@ import requests
 from django.core.cache import cache
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from datetime import datetime, timedelta
@@ -272,4 +273,9 @@ def add_movie_to_group(request, movie_id):
 
         group.group_movies.add(movie)
 
+        messages.success(
+            request,
+            'Movie added to group'
+        )
+        
         return HttpResponseRedirect(reverse('movie_details', args=[movie_id]))

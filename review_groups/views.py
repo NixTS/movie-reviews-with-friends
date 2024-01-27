@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.urls import reverse
 from .models import ReviewGroups
 from movies.models import MovieDetails
@@ -141,6 +142,12 @@ def edit_group(request, group_id):
             form = ReviewGroupsForm(request.POST, instance=group)
             if form.is_valid():
                 form.save()
+
+                messages.success(
+                    request,
+                    'Group edited'
+                )
+        
                 return redirect('group_details', group_id=group_id)
         else:
             form = ReviewGroupsForm(instance=group)
@@ -187,6 +194,12 @@ def delete_group(request, group_id):
     if request.user == group.group_creator:
         if request.method == 'POST':
             group.delete()
+
+            messages.success(
+                request,
+                'Group deleted'
+            )
+       
             return redirect('list_of_groups')
 
         return render(
@@ -233,7 +246,7 @@ def movie_review(request, group_id, movie_id):
             'back_url': back_url,
             'form': ReviewForm(),
         }
-
+        
         return render(request, 'review_groups/movie_review_in_group.html', context)
     else:
         return redirect('access_denied')
@@ -260,8 +273,20 @@ def join_leave_group(request, group_id):
     group = ReviewGroups.objects.get(pk=group_id)
 
     if request.user in group.group_members.all():
+
+        messages.success(
+            request,
+            'You left the group'
+        )
+        
         group.group_members.remove(request.user)
     else:
+
+        messages.success(
+            request,
+            'You joined the group'
+        )
+
         group.group_members.add(request.user)
 
     return redirect('group_details', group_id=group_id)

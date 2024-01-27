@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.urls import reverse
 from .forms import ReviewForm
 from .models import Review
@@ -37,6 +38,11 @@ def submit_review(request, group_id, movie_id):
             review.review_group_id = group_id
             review.save()
 
+            messages.success(
+                request,
+                'Review submitted'
+            )
+        
             return redirect(
                 'movie_review',
                 group_id=group_id,
@@ -100,6 +106,12 @@ def edit_review(request, group_id, movie_id, review_id):
             form = ReviewForm(request.POST, instance=review)
             if form.is_valid():
                 form.save()
+
+                messages.success(
+                    request,
+                    'Review edited'
+                )
+
                 return redirect(
                     'movie_review',
                     group_id=group_id,
@@ -145,6 +157,12 @@ def delete_review(request, group_id, movie_id, review_id):
     if request.user == review.review_user:
         if request.method == 'POST':
             review.delete()
+
+            messages.success(
+                request,
+                'Review deleted'
+            )
+            
             return redirect('movie_review', group_id=group_id, movie_id=movie_id)
 
         return render(request, 'reviews/delete_review.html', {'review': review})

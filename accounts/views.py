@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .models import CustomUser
 from .forms import RegistrationForm, UserProfileEditForm
 
@@ -77,9 +78,16 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('index')
+            
+            messages.success(
+                request,
+                'Successfully registered for an account'
+            )
+
+            return redirect('homepage')
     else:
         form = RegistrationForm()
+
 
     return render(request, 'registration/register.html', {'form': form})
 
@@ -99,6 +107,12 @@ def edit_own_profile(request):
         form = UserProfileEditForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+
+            messages.success(
+                    request,
+                    'Profile updated'
+                )
+            
             return redirect('user_profile')
     else:
         form = UserProfileEditForm(instance=request.user)

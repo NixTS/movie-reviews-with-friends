@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
+from moviestar.views import access_denied
 from .views import submit_review, edit_review, delete_review
 
 urlpatterns = [
@@ -17,5 +18,10 @@ urlpatterns = [
         '<int:group_id>/<int:movie_id>/<int:review_id>/delete_review',
         login_required(delete_review),
         name='delete_review'
+    ),
+    path(
+        'access_denied/',
+        access_denied,
+        name='access_denied'
     ),
 ]

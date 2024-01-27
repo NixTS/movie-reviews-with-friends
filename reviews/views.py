@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 from .forms import ReviewForm
 from .models import Review
 from review_groups.models import ReviewGroups
@@ -74,11 +75,11 @@ def edit_review(request, group_id, movie_id, review_id):
     Handles the user's request to edit a submitted review.
 
     Retrieves the specified review using its ID and
-      checks if the user is the owner of the review.
+    checks if the user is the owner of the review.
     If the request method is POST, processes the submitted form
     to update the review.
     If the form is valid, saves the changes and redirects to the 'movie_review'
-      page for the specified group and movie.
+    page for the specified group and movie.
 
     Parameters:
         - request: HttpRequest object.
@@ -91,26 +92,29 @@ def edit_review(request, group_id, movie_id, review_id):
           template with the review form.
         - If the request method is POST and the form is valid,
           redirects to the 'movie_review' page.
-    """
-    review = get_object_or_404(Review, pk=review_id, review_user=request.user)
+    """    
+    review = get_object_or_404(Review, pk=review_id)
 
-    if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review)
-        if form.is_valid():
-            form.save()
-            return redirect(
-                'movie_review',
-                group_id=group_id,
-                movie_id=movie_id
-            )
+    if request.user == review.review_user:
+        if request.method == 'POST':
+            form = ReviewForm(request.POST, instance=review)
+            if form.is_valid():
+                form.save()
+                return redirect(
+                    'movie_review',
+                    group_id=group_id,
+                    movie_id=movie_id
+                )
+        else:
+            form = ReviewForm(instance=review)
+
+        return render(
+            request,
+            'reviews/edit_review.html',
+            {'form': form, 'review': review}
+        )
     else:
-        form = ReviewForm(instance=review)
-
-    return render(
-        request,
-        'reviews/edit_review.html',
-        {'form': form, 'review': review}
-    )
+        return redirect('reviews:access_denied')
 
 
 @login_required
@@ -135,10 +139,14 @@ def delete_review(request, group_id, movie_id, review_id):
         - If the request method is POST, deletes the review and
         redirects to the 'movie_review' page.
     """
-    review = get_object_or_404(Review, pk=review_id, review_user=request.user)
+    review = get_object_or_404(Review, pk=review_id)
 
-    if request.method == 'POST':
-        review.delete()
-        return redirect('movie_review', group_id=group_id, movie_id=movie_id)
 
-    return render(request, 'reviews/delete_review.html', {'review': review})
+    if request.user == review.review_user:
+        if request.method == 'POST':
+            review.delete()
+            return redirect('movie_review', group_id=group_id, movie_id=movie_id)
+
+        return render(request, 'reviews/delete_review.html', {'review': review})
+    else:
+        return redirect('reviews:access_denied')

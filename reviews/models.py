@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from accounts.models import CustomUser
 from movies.models import MovieDetails
@@ -44,19 +44,22 @@ class Review(models.Model):
         null=True,
         blank=True
     )
-    review_rating = models.IntegerField()
+    review_rating = models.IntegerField(
+        default=1, validators=[
+            MaxValueValidator(5),
+            MinValueValidator(1)
+        ])
     review_title = models.CharField(
         max_length=255,
         blank=False,
         null=False,
-        default='Provide a review title.'
     )
     review_text = models.TextField(
         max_length=20000,
-        blank=True,
-        null=True,
-        default='Provide a review text.'
+        blank=False,
+        null=False,
     )
 
     class Meta:
         unique_together = ('review_user', 'review_movie', 'review_group')
+        ordering = ["-review_id"]

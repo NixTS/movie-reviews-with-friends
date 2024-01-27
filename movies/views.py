@@ -96,7 +96,7 @@ def process_movie_details(movie):
 
     Extracts information such as movie ID,
       title, poster path, overview, genre IDs,
-    genre names (fetched using fetch_genre_names), release date, and duration.
+    genre names (fetched using fetch_genre_names) and release date.
     Uses the extracted data to create or update a
       MovieDetails object in the database.
 
@@ -116,7 +116,6 @@ def process_movie_details(movie):
         movie.get('release_date', ''),
         '%Y-%m-%d'
     )
-    movie_duration = timedelta(minutes=movie.get('runtime', 0))
 
     movie_details, created = MovieDetails.objects.get_or_create(
         movie_id=movie_id,
@@ -126,7 +125,6 @@ def process_movie_details(movie):
             'movie_description': movie_description,
             'movie_genre': movie_genre,
             'movie_release_date': movie_release_date,
-            'movie_duration': movie_duration,
         }
     )
 
@@ -138,7 +136,6 @@ def process_movie_details(movie):
             movie_description,
             movie_genre,
             movie_release_date,
-            movie_duration
         )
 
     return movie_details
@@ -151,13 +148,12 @@ def update_existing_movie_details(
     movie_description,
     movie_genre,
     movie_release_date,
-    movie_duration
 ):
     """
     Updates the fields of an existing MovieDetails object with new information.
 
     Modifies the movie title, poster path,
-      description, genre, release date, and duration
+      description, genre and release date.
     of the MovieDetails object. The updated data is then saved to the database.
 
     Parameters:
@@ -167,7 +163,6 @@ def update_existing_movie_details(
         - movie_description: Updated overview/description for the movie.
         - movie_genre: Updated list of genre names for the movie.
         - movie_release_date: Updated release date for the movie.
-        - movie_duration: Updated duration for the movie.
 
     Returns:
         - None
@@ -177,7 +172,6 @@ def update_existing_movie_details(
     movie_details.movie_description = movie_description
     movie_details.movie_genre = movie_genre
     movie_details.movie_release_date = movie_release_date
-    movie_details.movie_duration = movie_duration
     movie_details.save()
 
 

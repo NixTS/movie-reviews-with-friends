@@ -12,7 +12,6 @@ class MovieDetails(models.Model):
         - movie_description (TextField): Description or overview of the movie.
         - movie_genre (JSONField): JSON representation of movie genres.
         - movie_release_date (DateField): Release date of the movie.
-        - movie_duration (DurationField): Duration or runtime of the movie.
 
     Methods:
         - get_poster_url(): Returns the complete URL for the movie poster.
@@ -42,4 +41,3 @@ class MovieDetails(models.Model):
     )
     movie_genre = models.JSONField(blank=True, null=True)
     movie_release_date = models.DateField(blank=True, null=True)
-    movie_duration = models.DurationField(blank=True, null=True)

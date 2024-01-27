@@ -11,6 +11,14 @@
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
 
+        <!-- error message failed login -->
+        {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Login failed:</strong> Please check your username and password.
+        </div>
+        {% endif %}
+        <!-- end error message failed login -->
+
         <!-- username -->
         <div class="form-group row">
             <label for="{{ form.username.id_for_label }}"

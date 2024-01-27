@@ -74,8 +74,8 @@ def create_groups(request):
     Handles the creation of review groups.
 
     If the HTTP request method is POST, validates the submitted form data.
-    If the form is valid, saves the review group and
-      redirects to the 'list_of_groups' view.
+    If the form is valid, sets the group creator to the logged-in user,
+      saves the review group, and redirects to the 'list_of_groups' view.
     If the HTTP request method is GET, renders the
       'review_groups/create_groups.html' template
     with an empty form for creating a new review group.
@@ -97,7 +97,17 @@ def create_groups(request):
     if request.method == 'POST':
         form = ReviewGroupsForm(request.POST)
         if form.is_valid():
-            form.save()
+            group = form.save(commit=False)
+            group.group_creator = request.user
+            group.save()
+
+            group.group_members.add(request.user)
+            
+            messages.success(
+                request,
+                'Group created'
+            )
+            
             return redirect('list_of_groups')
     else:
         form = ReviewGroupsForm()

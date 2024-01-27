@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit own profile{% endblock %}
+
+{% block content %}
+
+<!-- delete own profile -->
+<div class="container mt-4">
+    <h1 class="text-left display-4 mb-4">Delete Profile</h1>
+
+    <p>Are you sure you want to delete your profile <strong>{{ user.username }}</strong>?</p>
+    <p>Your profile and its content will be deleted <strong><u>forever</u></strong> and can't be brought back!</p>
+
+    <!-- delete profile button -->
+    <form method="post" action="{% url 'delete_own_profile' %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete!</button>
+    </form>
+    <!-- end delete profile button -->
+
+    <!-- back to user profile -->
+    <a href="{% url 'user_profile' %}" class="btn btn-secondary mt-3">Cancel</a>
+    <!-- end back to user profile -->
+
+</div>
+<!-- end delete own profile -->
+
+
+{% endblock %}

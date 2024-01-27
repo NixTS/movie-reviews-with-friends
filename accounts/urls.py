@@ -6,6 +6,7 @@ from .views import (
     user_details,
     register,
     edit_own_profile,
+    delete_own_profile,
     user_profile
 )
 
@@ -29,6 +30,10 @@ urlpatterns = [
     path(
         'edit_user_profile/',
         login_required(edit_own_profile), name='edit_own_profile'
+    ),
+    path(
+        'delete_user_profile/',
+        login_required(delete_own_profile), name='delete_own_profile'
     ),
     path(
         'register/',

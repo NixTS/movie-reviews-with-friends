@@ -121,6 +121,22 @@ def edit_own_profile(request):
 
 
 @login_required
+def delete_own_profile(request):
+    if request.method == 'POST':
+        user = request.user
+
+        user.delete()
+
+        messages.success(
+            request,
+            'Profile deleted ...'
+        )
+        return redirect('homepage') 
+
+    return render(request, 'profiles/delete_own_profile.html')
+    
+
+@login_required
 def user_profile(request):
     """
     Displays the user's own profile information.

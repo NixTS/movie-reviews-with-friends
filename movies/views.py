@@ -250,9 +250,9 @@ def add_movie_to_group(request, movie_id):
 
     If the request method is POST, extracts the group ID from the form data.
     Retrieves the movie and group objects based on the provided IDs.
-    Adds the movie to the groups list of movies.
-    Redirects to the movie details page
-      after the movie has been added to the group.
+    Checks if the movie is already in the group.
+    If not, adds the movie to the group's list of movies.
+    Redirects to the movie details page after the movie has been added to the group.
 
     Parameters:
         - request: HttpRequest object.
@@ -269,13 +269,19 @@ def add_movie_to_group(request, movie_id):
             ReviewGroups,
             group_id=group_id,
             group_members=request.user
+        )
+
+        if movie not in group.group_movies.all():
+            group.group_movies.add(movie)
+
+            messages.success(
+                request,
+                'Movie added to group'
+            )
+        else:
+            messages.info(
+                request,
+                'The movie is already in the group'
             )
 
-        group.group_movies.add(movie)
-
-        messages.success(
-            request,
-            'Movie added to group'
-        )
-        
         return HttpResponseRedirect(reverse('movie_details', args=[movie_id]))

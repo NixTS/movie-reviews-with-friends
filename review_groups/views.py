@@ -34,6 +34,7 @@ def list_of_groups(request):
     )
 
 
+@login_required
 def group_details(request, group_id):
     """
     Renders the details of a specific group.
@@ -196,7 +197,7 @@ def delete_group(request, group_id):
     else:
         return render(request, 'review_groups/access_denied.html')
 
-
+@login_required
 def movie_review(request, group_id, movie_id):
     """
     Displays details for a specific movie within a review group.

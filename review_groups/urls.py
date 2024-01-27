@@ -19,7 +19,7 @@ urlpatterns = [
     ),
     path(
         'details/<int:group_id>/',
-        group_details,
+        login_required(group_details),
         name='group_details'
     ),
     path(
@@ -39,7 +39,7 @@ urlpatterns = [
     ),
     path(
         '<int:group_id>/<int:movie_id>/reviews',
-        movie_review,
+        login_required(movie_review),
         name='movie_review'
     ),
     path(

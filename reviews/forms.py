@@ -18,3 +18,15 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['review_rating', 'review_title', 'review_text']
+
+        labels = {
+            'review_rating': 'Review Rating',
+            'review_title': 'Review Title',
+            'review_text': 'Review Text'
+        }
+
+        widgets = {
+            'review_rating': forms.NumberInput(attrs={'placeholder': 'Review Rating'}),
+            'review_title': forms.TextInput(attrs={'placeholder': 'Review Title'}),
+            'review_text': forms.Textarea(attrs={'placeholder': 'Enter your Review', 'rows': 10, 'cols': 100}),
+        }

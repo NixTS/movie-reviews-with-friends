@@ -213,24 +213,29 @@ def movie_review(request, group_id, movie_id):
         - Rendered HTML page with movie details
           within the context of a review group.
     """
-    review_group = get_object_or_404(ReviewGroups, group_id=group_id)
-    movie = get_object_or_404(MovieDetails, movie_id=movie_id)
-    group_name = review_group.group_name
+    group = get_object_or_404(ReviewGroups, group_id=group_id)
 
-    reviews = get_movie_reviews(group_id, movie_id)
+    if request.user in group.group_members.all():
+        review_group = get_object_or_404(ReviewGroups, group_id=group_id)
+        movie = get_object_or_404(MovieDetails, movie_id=movie_id)
+        group_name = review_group.group_name
 
-    back_url = reverse('group_details', kwargs={'group_id': group_id})
+        reviews = get_movie_reviews(group_id, movie_id)
 
-    context = {
-        'group': review_group,
-        'movie': movie,
-        'group_name': group_name,
-        'reviews': reviews,
-        'back_url': back_url,
-        'form': ReviewForm(),
-    }
+        back_url = reverse('group_details', kwargs={'group_id': group_id})
 
-    return render(request, 'review_groups/movie_review_in_group.html', context)
+        context = {
+            'group': review_group,
+            'movie': movie,
+            'group_name': group_name,
+            'reviews': reviews,
+            'back_url': back_url,
+            'form': ReviewForm(),
+        }
+
+        return render(request, 'review_groups/movie_review_in_group.html', context)
+    else:
+        return redirect('access_denied')
 
 
 @login_required

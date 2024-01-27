@@ -139,7 +139,6 @@ The User Details page provides a personalized glimpse into each user's interests
 ### **Features left to implement**
 
 + 
-> 
 
 ***
 
@@ -346,7 +345,6 @@ The registration process is tested to ensure that users can successfully registe
 
 
 ### **Unresolved Errors, Issues and Bugs**
-
 +
 
 ## **Deployment**

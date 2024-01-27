@@ -269,8 +269,10 @@ def join_leave_group(request, group_id):
 
     Retrieves the specified review group using its ID.
     Checks if the requesting user is already a member of the group.
-    If the user is a member, removes them from the group;
-      otherwise, adds them to the group.
+    If the user is a member, and they are not the group admin,
+      removes them from the group;
+    If the user is the group admin and decides to leave,
+      redirects to the 'delete_group' view for group deletion.
 
     Parameters:
         - request: HttpRequest object.
@@ -282,13 +284,22 @@ def join_leave_group(request, group_id):
     """
     group = ReviewGroups.objects.get(pk=group_id)
 
-    if request.user in group.group_members.all():
+    if request.user == group.group_creator:
+
+        messages.success(
+            request,
+            'As the group administrator, '
+            'you must delete the group in order to leave.'
+        )
+
+        return redirect('delete_group', group_id=group_id)
+    elif request.user in group.group_members.all():
 
         messages.success(
             request,
             'You left the group'
         )
-        
+
         group.group_members.remove(request.user)
     else:
 

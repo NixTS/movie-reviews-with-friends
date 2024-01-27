@@ -29,34 +29,34 @@
     <header>
 
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-lg bg-dark d-flex align-items-center">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'homepage' %}">Movie Reviews with Friends</a>
+                <a class="navbar-brand text-white" href="{% url 'homepage' %}">Movie Reviews with Friends</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon text-white"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link" href="{% url 'movies' %}">Movies</a>
-                        <a class="nav-link" href="{% url 'list_of_groups' %}">Groups</a>
-                        <a class="nav-link" href="{% url 'list_of_users' %}">Users</a>
+                        <a class="nav-link text-white" href="{% url 'movies' %}">Movies</a>
+                        <a class="nav-link text-white" href="{% url 'list_of_groups' %}">Groups</a>
+                        <a class="nav-link text-white" href="{% url 'list_of_users' %}">Users</a>
                     </div>
+                    <!-- Horizontal separator for collapsed navbar -->
+                    <hr class="navbar-separator d-lg-none bg-light">
+                    <!-- Authentication -->
+                    <div class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                        <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
+                        <a class="nav-link text-white" href="{% url 'user_profile' %}">{{ user.username }}</a>
+                        {% else %}
+                        <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+                        <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                        {% endif %}
+                    </div>
+                    <!-- end Authentication -->
                 </div>
-
-                <!-- Authentication -->
-                <div class="navbar-nav ms-auto">
-                    {% if user.is_authenticated %}
-                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                    <a class="nav-link" href="{% url 'user_profile' %}">{{ user.username }}</a>
-                    {% else %}
-                    <a class="nav-link" href="{% url 'login' %}">Login</a>
-                    <a class="nav-link" href="{% url 'register' %}">Register</a>
-                    {% endif %}
-                </div>
-                <!-- end Authentication -->
-
             </div>
         </nav>
         <!-- end Navbar -->
@@ -81,10 +81,12 @@
     <!-- end main -->
 
     <!-- footer -->
-    <footer class="bg-body-tertiary py-4 mt-5">
+    <footer class="bg-dark py-4 mt-5">
         <div class="container text-center">
-            <p>Website created by <a href="https://github.com/NixTS" class="link-underline-info">NixTS.</a></p>
-            <p>{% block copyright %}This project is created solely for educational purposes. It utilizes The Movie
+            <p class="text-white">Website created by <a href="https://github.com/NixTS"
+                    class="link-underline-info">NixTS.</a></p>
+            <p class="text-white">{% block copyright %}This project is created solely for educational purposes. It
+                utilizes The Movie
                 Database
                 <a href="https://developer.themoviedb.org/docs/getting-started" class="link-underline-info">(TMDB)
                     API</a> for content, and all rights

@@ -4,9 +4,17 @@ a {
     color: inherit;
 }
 
+.container-bg {
+    background-color: rgba(255, 255, 255, 0.678);
+}
+
 /* --------------------------------------------------------- headers */
-h1 {
-    font-weight: 900;
+h1.display-4 {
+    font-weight: bold;
+}
+
+h2.display-6 {
+    font-weight: bold;
 }
 
 /* --------------------------------------------------------- navigation & footer */
@@ -35,7 +43,7 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    box-shadow: inset 0 0 0 5000px rgba(255, 255, 255, 0.6);
+    box-shadow: inset 0 0 0 5000px rgba(255, 255, 255, 0.7);
 }
 
 /* --------------------------------------------------------- movies list cards */

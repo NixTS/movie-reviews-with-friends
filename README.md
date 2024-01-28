@@ -2,10 +2,11 @@
 
 Live Website: [Movie Reviews with Friends](https://movie-reviews-with-friends-96186426856b.herokuapp.com/)
 
-
 ## **Purpose**
 
 Movie Reviews with Friends is a web application built with Django that brings movie enthusiasts together to discuss and review their favorite films. The platform allows users to create or join groups centered around specific movie subjects, fostering a community where members can share their passion for cinema.
+
+![website Mock-Up](media/readme-images/mrwf-mockup.jpg)
 
 ## **Project Goals**
 
@@ -32,8 +33,6 @@ Promote the creation of high-quality content within groups, ensuring that the mo
 Prioritize a positive and user-friendly experience, making the platform enjoyable and accessible for users of varying levels of technical expertise.
 
 By achieving these goals, the Movie Reviews with Friends website aims to become a go-to platform for movie enthusiasts to connect, discuss, and share their passion for cinema within a vibrant and supportive community.
-
-
 
 ## **User Stories**
 
@@ -67,43 +66,49 @@ The
 **Navigation**  
 A fully responsive navigation bar positioned at the top of the page displaying essential site functionalities throughout the whole website.
 
-![]()
+Navigation Desktop
+![nav-dektop](media/readme-images/mrwf-nav-desktop.JPG)
+
+Navigation Mobile
+![nav-mobile](media/readme-images/mrwf-nav-mobile.JPG)
 
 **Home/Index**  
 The Movie Reviews with Friends home page serves as a warm welcome to users, tailored to their login status.  
 
 Not-logged-in-users are presented with a welcome message and encouregement to explore the website and register for an account.
 
-![]()
+![homepage logged out](media/readme-images/mrwf-logged-out-homepage.JPG)
 
-Logged in users are greeted by their username and groups they are apart of.
+Logged in users are greeted by their username and groups they are apart of and a randomly generated movie quote.
 
-![]()
+![homepage logged in](media/readme-images/mrwf-logged-in-homepage.JPG)
 
 **Register & Login**  
 Account registration is designed for simplicity. Users only need to provide a unique username, an email address, and a password with confirmation. This straightforward process allows users to explore the website's features promptly. Note that email confirmation is not required, providing users with immediate access upon registration.
 
-![]()
+![registration page](media/readme-images/mrwf-register-page.JPG)
+
+![login page](media/readme-images/mrwf-login.JPG)
 
 **Movies**  
 The Movies page is intentionally streamlined, showcasing only essential information: the movie poster and title. This design prioritizes a efficient scrolling experience, ensuring users can navigate without the distraction of information overload.
 
-![]()
+![movies list](media/readme-images/mrwf-movies-list.JPG)
 
 **Movie Details**  
 In the Movie Details section, users can get more comprehensive informations about movies, including a movie description, genres, release date, and runtime. For logged-in users, a feature allowing them to add the movie to any groups they are part of, enhancing their engagement with the Movie Reviews with Friends community.
 
-![]()
+![movie details](media/readme-images/mrwf-movies-details.JPG)
 
 **Groups**  
 The Groups page provides an overview of all currently available groups.
 
-![]()
+![groups list](media/readme-images/mrwf-groups-list.JPG)
 
 **Group details**  
 The Group Details page presents users with valuable insights, including the group description, the curated collection of movies added by the group, and a comprehensive list of both the group admin and members. Additionally, for users not yet part of the group, a prominent "Join Group" button is provided. Conversely, for those already part of the group, a convenient "Leave Group" option is available.
 
-![]()
+![groups list](media/readme-images/mrwf-group-details.JPG)
 
 **Reviews**  
 Upon selecting a movie within a group, the Reviews page unfolds, showcasing user-generated reviews. Users can express their thoughts through written reviews, accompanied by the option to assign a numerical rating from 1 to 10. This interactive feature empowers users to share their insights and opinions.

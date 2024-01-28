@@ -15,26 +15,26 @@
     <h2 class="text-left display-6">Group Movies</h2>
     <p class="subtle-italic">Click on a movie to see or write a review.</p>
 
-    <!-- seperate movie details for groups -->
+    <!-- separate movie details for groups -->
     <div class="row mb-4">
         {% for movie in group.group_movies.all %}
-        <div class="col-md-3 mb-4">
-            <div class="card h-100">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 bg-dark">
                 <a href="{% url 'movie_review' group_id=group.group_id movie_id=movie.movie_id %}"
-                    class="d-flex flex-column justify-content-between">
-                    <div class="card-body-movies p-0">
+                    class="d-flex flex-column justify-content-between text-white">
+                    <div class="card-body-movies p-0 d-flex flex-column align-items-center">
                         {% if movie.movie_poster %}
                         <img src="{{ movie.get_poster_url }}" alt="Movie Poster"
                             class="img-fluid rounded-top rounded-10 mb-3">
                         {% endif %}
-                        <span class="d-block w-100 m-3 text-dark">{{ movie.movie_title }}</span>
+                        <span class="d-block w-100 my-3 px-3 text-break">{{ movie.movie_title }}</span>
                     </div>
                 </a>
             </div>
         </div>
         {% endfor %}
     </div>
-    <!-- end seperate movie details for groups -->
+    <!-- end separate movie details for groups -->
 
     <h2 class="text-left display-6">Group Admin</h2>
     {% for member in group.group_members.all %}

@@ -483,6 +483,11 @@ The Movie Reviews with Friends website utilizes The Movie Database [TMDB API](ht
 
 The Python code provided was made with the knowledge gained through the CodeInstitute Full Stack Developer course.
 
+
+> **Important Note: Server Location and Potential Performance Impact**
+> 
+> **Due to challenges in securing an ElephantSQL server in Europe with the required SQL version of 13+, the database is > currently hosted in North Carolina. While this choice ensures the availability of the necessary database > specifications, it's important to note that the geographical distance may lead to potential performance issues.**
+
 ## **Acknowledgements**
 
 I'd like to thank my mentor [Daisy McGirr](https://github.com/Dee-McG) for her guidance throughout my project.

@@ -246,7 +246,8 @@ def add_movie_to_group(request, movie_id):
     Retrieves the movie and group objects based on the provided IDs.
     Checks if the movie is already in the group.
     If not, adds the movie to the group's list of movies.
-    Redirects to the movie details page after the movie has been added to the group.
+    Redirects to the movie details page after the
+      movie has been added to the group.
 
     Parameters:
         - request: HttpRequest object.

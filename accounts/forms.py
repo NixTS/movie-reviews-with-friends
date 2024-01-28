@@ -21,13 +21,15 @@ class RegistrationForm(UserCreationForm):
         labels = {
             'username': 'Username',
             'email': 'E-Mail Adress',
-            'password1': 'Password', 
+            'password1': 'Password',
             'password2': 'Password confirmation'
         }
 
         widgets = {
             'username': forms.TextInput(attrs={'placeholder': 'Username'}),
-            'email': forms.TextInput(attrs={'placeholder': 'E-Mail@Address.com'}),
+            'email': forms.TextInput(attrs={
+                'placeholder': 'E-Mail@Address.com'
+            }),
         }
 
 
@@ -42,7 +44,7 @@ class UserProfileEditForm(forms.ModelForm):
             'user_date_of_birth',
             'user_bio'
             ]
-        
+
         labels = {
             'username': 'Username',
             'first_name': 'First Name',
@@ -57,5 +59,6 @@ class UserProfileEditForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'placeholder': 'First Name'}),
             'last_name': forms.TextInput(attrs={'placeholder': 'Last Name'}),
             'email': forms.TextInput(attrs={'placeholder': 'E-Mail Address'}),
-            'user_date_of_birth': forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}),
+            'user_date_of_birth':
+            forms.TextInput(attrs={'placeholder': 'YYYY-MM-DD'}),
         }

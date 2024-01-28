@@ -78,7 +78,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            
+
             messages.success(
                 request,
                 'Successfully registered for an account'
@@ -87,7 +87,6 @@ def register(request):
             return redirect('homepage')
     else:
         form = RegistrationForm()
-
 
     return render(request, 'registration/register.html', {'form': form})
 
@@ -112,7 +111,7 @@ def edit_own_profile(request):
                     request,
                     'Profile updated'
                 )
-            
+
             return redirect('user_profile')
     else:
         form = UserProfileEditForm(instance=request.user)
@@ -131,10 +130,10 @@ def delete_own_profile(request):
             request,
             'Profile deleted ...'
         )
-        return redirect('homepage') 
+        return redirect('homepage')
 
     return render(request, 'profiles/delete_own_profile.html')
-    
+
 
 @login_required
 def user_profile(request):

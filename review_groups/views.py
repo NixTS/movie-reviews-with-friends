@@ -102,12 +102,12 @@ def create_groups(request):
             group.save()
 
             group.group_members.add(request.user)
-            
+
             messages.success(
                 request,
                 'Group created'
             )
-            
+
             return redirect('list_of_groups')
     else:
         form = ReviewGroupsForm()
@@ -157,7 +157,7 @@ def edit_group(request, group_id):
                     request,
                     'Group edited'
                 )
-        
+
                 return redirect('group_details', group_id=group_id)
         else:
             form = ReviewGroupsForm(instance=group)
@@ -209,7 +209,7 @@ def delete_group(request, group_id):
                 request,
                 'Group deleted'
             )
-       
+
             return redirect('list_of_groups')
 
         return render(
@@ -219,6 +219,7 @@ def delete_group(request, group_id):
         )
     else:
         return render(request, 'review_groups/access_denied.html')
+
 
 @login_required
 def movie_review(request, group_id, movie_id):
@@ -256,8 +257,12 @@ def movie_review(request, group_id, movie_id):
             'back_url': back_url,
             'form': ReviewForm(),
         }
-        
-        return render(request, 'review_groups/movie_review_in_group.html', context)
+
+        return render(
+            request,
+            'review_groups/movie_review_in_group.html',
+            context
+        )
     else:
         return redirect('access_denied')
 

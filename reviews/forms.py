@@ -26,7 +26,19 @@ class ReviewForm(forms.ModelForm):
         }
 
         widgets = {
-            'review_rating': forms.NumberInput(attrs={'placeholder': 'Review Rating'}),
-            'review_title': forms.TextInput(attrs={'placeholder': 'Review Title'}),
-            'review_text': forms.Textarea(attrs={'placeholder': 'Enter your Review', 'rows': 10, 'cols': 35}),
+            'review_rating': forms.NumberInput(
+                attrs={'placeholder': 'Review Rating'
+                       }
+                    ),
+            'review_title': forms.TextInput(
+                attrs={'placeholder': 'Review Title'
+                       }
+                    ),
+            'review_text': forms.Textarea(
+                attrs={'placeholder':
+                       'Enter your Review',
+                       'rows': 10,
+                       'cols': 35
+                       }
+                    ),
         }

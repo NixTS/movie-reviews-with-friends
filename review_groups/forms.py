@@ -23,6 +23,16 @@ class ReviewGroupsForm(forms.ModelForm):
         }
 
         widgets = {
-            'group_name': forms.TextInput(attrs={'placeholder': 'Enter A Group Name'}),
-            'group_description': forms.Textarea(attrs={'placeholder': 'Enter A Group Description', 'rows': 10, 'cols': 35}),
+            'group_name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Enter A Group Name'
+                    }
+                ),
+            'group_description': forms.Textarea(
+                attrs={
+                    'placeholder': 'Enter A Group Description',
+                    'rows': 10,
+                    'cols': 35
+                    }
+                ),
         }

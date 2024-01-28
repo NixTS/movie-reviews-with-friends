@@ -42,7 +42,7 @@ def submit_review(request, group_id, movie_id):
                 request,
                 'Review submitted'
             )
-        
+
             return redirect(
                 'movie_review',
                 group_id=group_id,
@@ -98,7 +98,7 @@ def edit_review(request, group_id, movie_id, review_id):
           template with the review form.
         - If the request method is POST and the form is valid,
           redirects to the 'movie_review' page.
-    """    
+    """
     review = get_object_or_404(Review, pk=review_id)
 
     if request.user == review.review_user:
@@ -153,7 +153,6 @@ def delete_review(request, group_id, movie_id, review_id):
     """
     review = get_object_or_404(Review, pk=review_id)
 
-
     if request.user == review.review_user:
         if request.method == 'POST':
             review.delete()
@@ -162,9 +161,17 @@ def delete_review(request, group_id, movie_id, review_id):
                 request,
                 'Review deleted'
             )
-            
-            return redirect('movie_review', group_id=group_id, movie_id=movie_id)
 
-        return render(request, 'reviews/delete_review.html', {'review': review})
+            return redirect(
+                'movie_review',
+                group_id=group_id,
+                movie_id=movie_id
+            )
+
+        return render(
+            request,
+            'reviews/delete_review.html',
+            {'review': review}
+        )
     else:
         return redirect('reviews:access_denied')

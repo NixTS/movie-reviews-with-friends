@@ -283,29 +283,15 @@ Logged in users are greeted by their username and groups they are apart of and a
 ![homepage logged in](media/readme-images/mrwf-logged-in-homepage.JPG)
 
 
-***
-
-# **Features**
-
-## **Existing Features**
-
-**Movies**
-+ 
-
-**Groups**
-+ 
-
-**Users**
-+ 
-
-**Database**
-+ 
-
 ## **Features left to implement**
++ In future releases, the plan is to enhance the user experience by displaying additional movie information such as runtime, cast details, and introducing a dedicated actors page.
++ Implementation of a filter function and expanding the movie database by fetching more entries from the TMDB API is on the roadmap.
++ Further customization of user profiles is envisioned, including the addition of profile pictures and the ability to add favorite movies.
 
-+ 
+## **Unresolved Bugs and Issues**
++ Initially, movie runtime always displayed 00:00:00. This issue has been addressed by removing the movie runtime from the movie details page.
 
-***
++ When viewing another user's profile, their username is displayed in the navigation bar instead of the user's own username. This issue arises from the use of the same Django tag for both the username in the navbar and the username in the user details page.
 
 # **Technologies**
 
@@ -416,101 +402,7 @@ Logged in users are greeted by their username and groups they are apart of and a
 
 # **Testing**
 
-## Manual Tests
-
-**HTML Validation**
-  + *Description*: Validate HTML code using the W3 HTML Checker.
-  + *Steps*:
-    1. Copy the HTML code of the templates.
-    2. Visit the [W3 HTML Checker](https://validator.w3.org/).
-    3. Paste the HTML code and check for any validation errors.
-    4. Fix any warnings or errors.
-  + *Expected Result*: No validation errors found in the core structure and syntax of HTML.
-
-    **Note**: Due to the dynamic nature of Django templates and the usage of template tags, some errors related to undefined variables or attributes may be expected.
-
-### **Python Linter**
-  + *Description*: Ensure Python code adheres to coding standards using a linter (CI Python Linter).
-  + *Steps*:
-    1. Run the linter on each Python code file.
-    2. Review the output for any warnings or errors.
-    3. Fix any warnings or errors.
-  + *Expected Result*: The code complys with coding standards without any major issues.
-
-## **Automated Tests**
-
-**Registration**
-The registration process is tested to ensure that users can successfully register with the required information and that proper validation checks are in place.
-
-**Requirements**
-+ **Username**
-    + Required.
-    + Must be unique, will be checked back with the database.
-    + Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-
-+ **E-Mail Adress**
-    + Required.
-    + Valid E-Mail Address format.
-
-+ **Password**
-    + Required.
-    + Password can’t be too similar to your other personal information.
-    + Password must contain at least 8 characters.
-    + Password can’t be a commonly used password.
-    + Password can’t be entirely numeric.
-
-+ **Password Confirmation**
-    + Required.
-    + Password confirmation must match passsword entered beforehand.
-
-
-**Test Case 1: Valid Registration**
-+ **Scenario:** User provides valid registration details.
-+ **Steps:**
-  1. Navigate to the registration page.
-  2. Enter a unique username.
-  3. Provide a valid email address (no email confirmation required).
-  4. Enter a strong password.
-  5. Confirm the password.
-  6. Click the "Register" button.
-+ **Expected Result:** User is successfully registered and redirected to the login page.
-
-**Test Case 2: Missing Username**
-+ **Scenario:** User attempts registration without providing a username.
-+ **Steps:**
-  1. Navigate to the registration page.
-  2. Leave the username field empty.
-  3. Provide a valid email address.
-  4. Enter a strong password.
-  5. Confirm the password.
-  6. Click the "Register" button.
-+ **Expected Result:** User receives an error message indicating that a username is required.
-
-**Test Case 3: Password Mismatch**
-+ **Scenario:** User provides mismatched passwords during registration.
-+ **Steps:**
-  1. Navigate to the registration page.
-  2. Enter a unique username.
-  3. Provide a valid email address.
-  4. Enter a strong password.
-  5. Confirm the password with a different value.
-  6. Click the "Register" button.
-+ **Expected Result:** User receives an error message indicating that passwords do not match.
-
-**Test Case 4: Invalid Email Address**
-+ **Scenario:** User provides an invalid email address during registration.
-+ **Steps:**
-  1. Navigate to the registration page.
-  2. Enter a unique username.
-  3. Provide an invalid email address (e.g., user@example).
-  4. Enter a strong password.
-  5. Confirm the password.
-  6. Click the "Register" button.
-+ **Expected Result:** User receives an error message indicating that the provided email address is not valid.
-
-
-## **Unresolved Errors, Issues and Bugs**
-+
+Test cases and results can be found in the [TESTING.md](TESTING.md). This was moved due to the size of the file.
 
 # **Deployment**
 
@@ -543,31 +435,23 @@ To halt the Django development server, follow these steps:
 ## **Deployment to Live Service**
 
 1. Get the project ready for deployment
-
     + Ensure the project is ready for deployment and includes all necessary dependencies in a requirements.txt file using this command.
-
     + pip3 freeze > requirements.txt
-
     + In the settings, set "Debug" to "False" and save the file.
 
 2. Pushing GitHub
-
     + Make a commit and push the current version of the program to GitHub.
-
     + git commit -m "..."  
     + git push
 
 3. Set Up ElephantSQL (PostgreSQL)
-
    + Visit [ElephantSQL](https://www.elephantsql.com/) and create a new PostgreSQL instance.
    + Obtain the database URL provided by ElephantSQL.
 
 4. Heroku starting a new project
-
     + Visit the [Heroku](https://dashboard.heroku.com/) dashboard and click "New App" after that, give the project a name and select a region, next.
 
 5. Heroku project settings
-
     + In the project dashboard click "Settings" and head to the "Project Vars" section. CLick "Reveal Config Vars" opening two input fields.
     + Put in the following:
         + DATABASE_URL - *postgres://your-database-link"
@@ -576,15 +460,12 @@ To halt the Django development server, follow these steps:
         + TMDB_API_KEY - *The Movie Database api key from the env.py file*
 
 6. Connecting to GitHub
-
     + Click the "Deploy" tab and select "GitHub" and then "Connect to Github".
 
 7. Selecting the Project
-
     + After successfully connecting to GitHub a search bar opens. Type the name of the repository your project is in. A dropdown menu will open, click on the correct repository. This links up the repository from GitHub to heroku.
 
 8. Deployment
-
     + Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finish, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
 
 ***

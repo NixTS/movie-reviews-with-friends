@@ -7,7 +7,7 @@ Live Website: [Movie Reviews with Friends](https://movie-reviews-with-friends-96
 
 Movie Reviews with Friends is a web application built with Django that brings movie enthusiasts together to discuss and review their favorite films. The platform allows users to create or join groups centered around specific movie subjects, fostering a community where members can share their passion for cinema.
 
-![website Mock-Up](media/readme-images/mrwf-mockup.jpg)
+![website Mock-Up](media/readme-images/mrwf-mockup.JPG)
 
 
 # **User-Experiance-Design**
@@ -398,7 +398,6 @@ Logged in users are greeted by their username and groups they are apart of and a
 
 - [The Movie Database (TMDb) API](https://www.themoviedb.org/documentation/api)
     - Integration of TMDb API for fetching movie-related data, including posters, titles, and additional information.
-***
 
 # **Testing**
 
@@ -467,8 +466,6 @@ To halt the Django development server, follow these steps:
 
 8. Deployment
     + Scroll down and select either "Automatic deploys" or "Manual deploy". After the deployment is finish, head over to the "Overview" tab on heroku. On the top right, click "Open app" a new tab will open with the deployed project.
-
-***
 
 # **Credits**
 

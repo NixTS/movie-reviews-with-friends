@@ -486,7 +486,7 @@ The Python code provided was made with the knowledge gained through the CodeInst
 
 > **Important Note: Server Location and Potential Performance Impact**
 > 
-> **Due to challenges in securing an ElephantSQL server in Europe with the required SQL version of 13+, the database is > currently hosted in North Carolina. While this choice ensures the availability of the necessary database > specifications, it's important to note that the geographical distance may lead to potential performance issues.**
+> **Due to challenges in securing an ElephantSQL server in Europe with the required SQL version of 13+, the database is currently hosted in North Carolina. While this choice ensures the availability of the necessary database specifications, it's important to note that the geographical distance may lead to potential performance issues.**
 
 ## **Acknowledgements**
 
